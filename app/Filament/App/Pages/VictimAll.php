@@ -1,0 +1,316 @@
+<?php
+
+namespace App\Filament\App\Pages;
+
+use App\Enums\jobType;
+use App\Enums\qualyType;
+
+use App\Models\Family;
+use App\Models\Familyshow;
+use App\Models\Job;
+
+use App\Models\Qualification;
+use App\Models\Street;
+use App\Models\VicTalent;
+use App\Models\Victim;
+
+use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Pages\Page;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Support\Enums\MaxWidth;
+
+use Filament\Support\Enums\TextSize;
+use Filament\Support\Enums\Width;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\HtmlString;
+
+class VictimAll extends Page implements HasForms,HasTable
+{
+    use InteractsWithForms,InteractsWithTable;
+    protected string $view = 'filament.app.pages.victim-all';
+
+    protected static ?string $navigationLabel='استفسار وبحث';
+    protected ?string $heading='';
+
+    public $family_id=null;
+    public $familyshow_id;
+    public $street_id=null;
+    static $ser=0;
+    public function form(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Select::make('familyshow_id')
+                    ->hiddenLabel()
+                    ->prefix('العائلة')
+                    ->options(function () {
+                        return Familyshow::query()->orderBy('name')->pluck('name', 'id');
+                    })
+                    ->preload()
+                    ->live()
+                    ->searchable()
+                    ->columnSpan(2)
+                    ->afterStateUpdated(function ($state){
+                        $this->familyshow_id=$state;
+                    }),
+                Select::make('street_id')
+                    ->hiddenLabel()
+                    ->prefix('العنوان')
+                    ->options(Street::all()->pluck('StrName','id'))
+                    ->preload()
+                    ->live()
+                    ->searchable()
+                    ->columnSpan(2)
+                    ->afterStateUpdated(function ($state){
+                        $this->street_id=$state;
+                    }),
+
+
+            ])->columns(8);
+    }
+
+    public function table(Table $table): Table
+    {
+        return $table
+        ->query(function (){
+        return
+            Victim::query()
+                ->when($this->familyshow_id ,function($q){
+                    $q->where('familyshow_id',$this->familyshow_id);
+                })
+                ->when($this->street_id,function($q){
+                    $q->where('street_id',$this->street_id);
+                })
+                ->orderBy('familyshow_id')
+                ->orderBy('family_id')
+                ->orderBy('masterKey');
+    })
+        ->paginationPageOptions([5,10,25,50,100])
+        ->searchPlaceholder('بحث بالإسم او بالعائلة ')
+        ->searchDebounce('750ms')
+            ->columns([
+
+                TextColumn::make('FullName')
+                    ->label('الاسم بالكامل')
+                    ->sortable()
+                    ->searchable()
+                    ->formatStateUsing(fn (Victim $record): View => view(
+                        'filament.app.pages.assist.full-data',
+                        ['record' => $record],
+                    ))
+                    ->searchable(),
+                TextColumn::make('year')
+                    ->label('مواليد')
+                ,
+                TextColumn::make('Familyshow.name')
+                    ->label('العائلة')
+                    ->sortable()
+                    ->toggleable()
+                    ->hidden(function (){return $this->familyshow_id !=null;})
+                    ->searchable(),
+
+
+                TextColumn::make('Street.StrName')
+                    ->label('العنوان')
+
+                    ->toggleable()
+                    ->sortable(),
+
+                TextColumn::make('Job.name')
+                    ->formatStateUsing(fn (Victim $record): View => view(
+                        'filament.app.pages.assist.job-data',
+                        ['record' => $record],
+                    ))
+                    ->label('المهنة')
+                    ->toggleable(),
+                TextColumn::make('VicTalent.Talent.name')
+                    ->label('المواهب')
+                    ->formatStateUsing(fn (Victim $record): View => view(
+                        'filament.app.pages.assist.talent-data',
+                        ['record' => $record],
+                    ))
+                    ->toggleable(),
+                ImageColumn::make('image2')
+                    ->toggleable()
+                    ->imageSize(80)
+                    ->stacked()
+                    ->limit(3)
+                    ->placeholder('الصورة')
+                    ->label('')
+                    ->circular(),
+            ])
+            ->recordActions([
+                Action::make('View Information')
+                    ->iconButton()
+                    ->modalHeading('')
+                    ->modalWidth(Width::SevenExtraLarge)
+                    ->icon('heroicon-s-eye')
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('عودة')
+                    ->schema([
+                       Section::make()
+                            ->schema([
+                                Section::make()
+                                    ->schema([
+                                        TextEntry::make('FullName')
+                                            ->color(function (Victim $record){
+                                                if ($record->male=='ذكر') return 'primary';  else return 'Fuchsia';})
+                                            ->columnSpan(3)
+                                            ->weight(FontWeight::ExtraBold)
+                                            ->size(TextSize::Large)
+                                            ->label(''),
+                                        TextEntry::make('year')
+                                            ->visible(function (Victim $record){return $record->year!=null;})
+                                            ->inlineLabel()
+                                            ->color('rose')
+                                            ->label(new HtmlString('<span style="color: yellow">مواليد</span>')),
+                                        TextEntry::make('sonOfFather.FullName')
+                                            ->visible(function (Victim $record){
+                                                return $record->father_id;
+                                            })
+                                            ->color('info')
+                                            ->label('والده')
+                                            ->size( TextSize::Large)
+
+                                            ->columnSpanFull(),
+                                        TextEntry::make('sonOfMother.FullName')
+                                            ->visible(function (Victim $record){
+                                                return $record->mother_id;
+                                            })
+                                            ->color('Fuchsia')
+                                            ->label('والدته')
+                                            ->size(TextSize::Large)
+
+                                            ->columnSpanFull(),
+
+                                        TextEntry::make('wife.FullName')
+                                            ->visible(function (Victim $record){
+                                                return $record->wife_id;
+                                            })
+                                            ->color('Fuchsia')
+                                            ->label('زوجته')
+                                            ->size(TextSize::Large)
+                                            ->separator(',')
+                                            ->columnSpanFull(),
+                                        TextEntry::make('wife2.FullName')
+                                            ->visible(function (Victim $record){
+                                                return $record->wife2_id;
+                                            })
+                                            ->color('Fuchsia')
+                                            ->label('زوجته الثانية')
+                                            ->size(TextSize::Large)
+                                            ->columnSpanFull(),
+                                        TextEntry::make('husband.FullName')
+                                            ->visible(function (Victim $record){
+                                                return $record->husband_id;
+                                            })
+                                            ->label('زوجها')
+                                            ->badge()
+                                            ->separator(',')
+                                            ->columnSpanFull(),
+
+                                        TextEntry::make('hisSons.Name1')
+                                            ->visible(function (Victim $record){
+                                                return $record->is_father;
+                                            })
+                                            ->label('أبناءه')
+                                            ->color(function( )  {
+                                                self::$ser++;
+
+                                                switch (self::$ser){
+                                                    case 1: $c='success';break;
+                                                    case 2: $c='info';break;
+                                                    case 3: $c='yellow';break;
+                                                    case 4: $c='rose';break;
+                                                    case 5: $c='blue';break;
+                                                    case 6: $c='Fuchsia';break;
+                                                    default: $c='primary';break;
+                                                }
+                                                return $c;
+
+                                            })
+                                            ->badge()
+                                            ->separator(',')
+                                            ->columnSpanFull(),
+                                        TextEntry::make('herSons.Name1')
+                                            ->visible(function (Victim $record){
+                                                return $record->is_mother;
+                                            })
+                                            ->label('أبناءها')
+                                            ->badge()
+                                            ->separator(',')
+                                            ->columnSpanFull(),
+                                        TextEntry::make('Familyshow.name')
+                                            ->color('info')
+                                            ->label('العائلة'),
+                                        TextEntry::make('Family.FamName')
+                                            ->visible(function (){
+                                                return $this->familyshow_id && Family::where('familyshow_id',$this->familyshow_id)->count()>1;
+                                            })
+                                            ->color('info')
+                                            ->label('التسمية'),
+                                        TextEntry::make('Family.Tribe.TriName')
+                                            ->color('info')
+                                            ->label('القبيلة'),
+                                        TextEntry::make('Street.StrName')
+                                            ->color('info')
+                                            ->label('العنوان'),
+                                        TextEntry::make('Street.Area.AreaName')
+                                            ->color('info')
+                                            ->label('المحلة'),
+
+
+                                        TextEntry::make('Job.name')
+                                            ->visible(function (Model $record){
+                                                return $record->job_id;
+                                            })
+                                            ->color('info')
+                                            ->label('الوظيفة'),
+                                        TextEntry::make('VicTalent.Talent.name')
+                                            ->visible(function (Model $record){
+                                                return VicTalent::where('victim_id',$record->id)->exists() ;
+                                            })
+
+                                            ->color('info')
+                                            ->label('المواهب'),
+                                        TextEntry::make('notes')
+                                            ->label('')
+
+                                    ])
+                                    ->columns(4)
+                                    ->columnSpan(2),
+
+                                ImageEntry::make('image2')
+                                    ->label('')
+
+                                    ->stacked()
+                                    ->label('')
+                                    ->height(500)
+                                    ->columnSpan(2)
+
+
+                            ])->columns(4)
+                    ])
+                    ->slideOver(),
+
+            ])
+            ;
+
+    }
+}

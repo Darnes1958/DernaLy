@@ -31,17 +31,17 @@ class Victim extends Model
   }
 
 
-    public function father(){
+    public function hisSons(){
      return $this->hasMany(self::class, 'father_id');
     }
-  public function mother(){
+  public function herSons(){
     return $this->hasMany(self::class, 'mother_id');
   }
 
-  public function sonOfFather(){
+  public function hisFather(){
     return $this->belongsTo(self::class, 'father_id');
   }
-  public function sonOfMother(){
+  public function hisMother(){
     return $this->belongsTo(self::class, 'mother_id');
   }
 
