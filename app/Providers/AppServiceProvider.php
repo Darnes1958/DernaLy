@@ -6,11 +6,13 @@ use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\ServiceProvider;
+use Nette\Utils\Image;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,6 +48,8 @@ class AppServiceProvider extends ServiceProvider
             $column->translateLabel();
         });
         TextEntry::configureUsing(function (TextEntry $entry): void {$entry->translateLabel();});
+
+        ImageEntry::configureUsing(function (ImageEntry $entry): void {$entry->translateLabel();});
 
     }
 }
