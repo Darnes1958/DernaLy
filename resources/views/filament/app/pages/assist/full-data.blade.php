@@ -1,13 +1,49 @@
 
   <div class="flex ">
+      @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
+      @if($record->male=='ذكر')
+          @if($record->is_great_grandfather)
+              <label   class="text-red-950"> جد الأب : </label>
+          @else
+              @if($record->is_grandfather)
+                  <label   class="text-red-950">الجد :&nbsp;&nbsp; </label>
+              @else
+                  @if($record->is_father)
+                      <label  class="text-yellow-700">الأب :&nbsp;&nbsp; </label>
+                  @endif
+              @endif
+          @endif
+          @if($record->is_father==0 && $record->wife_id!=null)
+              <label   class="text-blue-700">الزوج :&nbsp;&nbsp; </label>
+          @endif
+      @endif
+      @if($record->male=='أنثي')
+          @if($record->is_great_grandmother)
+              <p style="color: aqua; ">جدة الأب :&nbsp;&nbsp;</p>
+          @else
+              @if($record->is_grandmother)
+                  <p style="color: aqua; ">الجدة : &nbsp;&nbsp;</p>
+              @else
+                  @if($record->is_mother)
+                      <p style="color: aqua; ">الأم : &nbsp;&nbsp;</p>
+                  @endif
+              @endif
+          @endif
+          @if($record->is_mother==0 && $record->husband_id!=null)
+              <label style="color: #6b21a8" >الزوجة :&nbsp;&nbsp; </label>
+          @endif
 
-    @if($record->is_father)
-     <label style="color: #fbbf24; ">{{$record->FullName}}</label>
+      @endif
+
+
+
+  @if($record->is_father)
+     <label class="text-amber-700 font-bold">{{$record->FullName}}</label>
     @else
         @if($record->is_mother)
-            <label style="color: #00bb00;">{{$record->FullName}}</label>
+            <label class="text-green-700 font-bold">{{$record->FullName}}</label>
         @else
-            <label  >{{$record->FullName}}</label>
+            <label  class="font-bold">{{$record->FullName}}</label>
         @endif
     @endif
     @if ($record->otherName) <label style="color: #9f1239;font-weight: bold"> &nbsp; [{{$record->otherName}}]&nbsp; </label> @endif
@@ -17,10 +53,7 @@
             @foreach($record->VicTalent as $talent)
                 <label>&nbsp;</label>
                 @if($talent->Talent->image)
-
                         <x-filament::avatar src="{{  asset('images/'.$talent->Talent->image) }} " size="sm"   />
-
-
                 @endif
             @endforeach
         @endif
@@ -36,56 +69,44 @@
 
         @if($record->husband)
          <div class="flex ">
-          <label style="color: #fbbf24;font-weight: bold">زوجها :&nbsp;</label>
+          <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <label >{{$record->husband->FullName}}</label>
          </div>
         @endif
 
         @if($record->wife)
           <div class="flex ">
-            <label style="color: #00bb00;font-weight: bold">&nbsp;&nbsp;&nbsp;زوجته :</label>
+            <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;زوجته :</label>
             <label >{{$record->wife->FullName}}</label>
           </div>
         @endif
         @if($record->wife2)
          <div class="flex ">
-            <label style="color: #00bb00;font-weight: bold">&nbsp;&nbsp;&nbsp;زوجته الثانية :</label>
+            <label style="color: #00bb00;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;زوجته الثانية :</label>
             <label >{{$record->wife2->FullName}}</label>
          </div>
         @endif
 
-        @if($record->hisFather)
-         <div class="flex ">
-            @if($record->male=='ذكر')
-            <label style="color: dodgerblue;font-weight: bold">&nbsp;&nbsp;&nbsp;والده :</label>
-            @else
-            <label style="color: dodgerblue;font-weight: bold">&nbsp;&nbsp;&nbsp;والدها :</label>
-            @endif
-            <label >{{$record->hisFather->FullName}}</label>
-         </div>
-        @endif
-        @if($record->hisMother)
-          <div class="flex ">
-            @if($record->male=='ذكر')
-                <label style="color: #c084fc;font-weight: bold">&nbsp;&nbsp;&nbsp;والدته :</label>
-            @else
-                <label style="color: #c084fc;font-weight: bold">&nbsp;&nbsp;&nbsp;والدتها :</label>
-            @endif
 
-            <label >{{$record->hisMother->FullName}}</label>
-          </div>
-        @endif
+
 
     @if($record->hisSons->count()>0)
       <div class="flex">
-         <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;أبناءه :</label>
+         <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;أبناءه :</label>
 
          @php $i=0; @endphp
          @foreach($record->hisSons as $item)
-          @if ($i == 0) <label>{{$item->Name1}}</label>
-          @else  <label>&nbsp;,&nbsp;</label>
-                 <label>{{$item->Name1}}</label>
+          @if ($i != 0) <label>&nbsp;,&nbsp;</label>  @endif
+          @if($item->is_father)
+              <label class="text-amber-700 font-bold">{{$item->Name1}}</label>
+          @else
+            @if($item->is_mother)
+              <label class="text-green-700 font-bold">{{$item->Name1}}</label>
+            @else
+              <label>{{$item->Name1}}</label>
+            @endif
           @endif
+
           @php $i++ @endphp
 
         @endforeach
@@ -94,12 +115,19 @@
     @endif
     @if($record->herSons->count()>0)
       <div class="flex">
-                <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;أبناءها :</label>
+                <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;أبناءها :</label>
             @php
                 if ($record->has_more !=1) {
                     $i=0;
                     foreach($record->herSons as $item){
-                         if ($i == 0) echo "<label>{$item->Name1}</label>"; else echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label><label>{$item->Name1}</label>";
+                         if ($i != 0) echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label>" ;
+                         if ($item->is_father)
+                             echo "<label class=\"text-amber-700 font-bold\">{$item->Name1}</label>";
+                         else
+                             if ($item->is_mother)
+                                 echo "<label class=\"text-green-700 font-bold\">{$item->Name1}</label>";
+                             else
+                             echo "<label>{$item->Name1}</label>";
                          $i++;
                     }
                     if (!$record->husband) echo "<label>&nbsp&nbsp;(من : &nbsp {$item->Name2}&nbsp;{$item->Name3}&nbsp;{$item->Name4})</label>";
@@ -121,7 +149,14 @@
                               $i=0;
                           }
 
-                             if ($i == 0) echo "<label>&nbsp;{$item->Name1}</label>"; else echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label><label>{$item->Name1}</label>";
+                         if ($i != 0) echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label>" ;
+                         if ($item->is_father)
+                             echo "<label class=\"text-amber-700 font-bold\">{$item->Name1}</label>";
+                         else
+                             if ($item->is_mother)
+                                 echo "<label class=\"text-green-700 font-bold\">{$item->Name1}</label>";
+                             echo "<label>{$item->Name1}</label>";
+
                              $i++;
                         }
                             echo "<label>&nbsp&nbsp;(من :  {$name2}&nbsp;{$name3}&nbsp;{$name4})</label>";

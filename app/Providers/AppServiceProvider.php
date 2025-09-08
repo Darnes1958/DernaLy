@@ -8,9 +8,12 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Support\Facades\FilamentView;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Nette\Utils\Image;
 
@@ -50,6 +53,11 @@ class AppServiceProvider extends ServiceProvider
         TextEntry::configureUsing(function (TextEntry $entry): void {$entry->translateLabel();});
 
         ImageEntry::configureUsing(function (ImageEntry $entry): void {$entry->translateLabel();});
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
+            fn (): string => Blade::render('@livewire(\'top-bar\')'),
+        );
 
     }
 }

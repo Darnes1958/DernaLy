@@ -1,0 +1,73 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/App/**/*';
+@source '../../../../resources/views/filament/app/**/*';
+@source '../../../../app/Livewire/**/*';
+@source '../../../../resources/views/livewire/**/*';
+
+
+@utility my-blue {
+    .fi-sc-component{
+        background-color: #00bb00;
+    }
+
+  .fi-wi-stats-overview-stat{
+      background-color: #00bb00;
+  }
+    .fi-wi-stats-overview-stat-content{
+        background-color: #00bb00;
+    }
+
+}
+
+@utility morehoneyyellow
+{
+    color: #f1cc75;
+}
+.fi-ta-ctn .py-4 {
+    padding-top: .3rem !important;
+    padding-bottom: .3rem !important;
+}
+
+@utility amber50 {
+    @apply bg-amber-50;
+}
+@utility amber200 {
+    @apply bg-amber-200;
+}
+@utility amber300 {
+    @apply bg-amber-300;
+}
+@utility amber100 {
+    @apply bg-amber-100;
+}
+
+
+.fi-sidebar-nav
+{
+    @apply amber200;
+}
+.fi-sidebar-item-icon {
+    @apply text-teal-700;
+}
+
+.fi-topbar {
+    @apply amber50;
+}
+
+
+.table_head_blue {
+    .fi-ta-header-cell {
+        @apply amber200;
+    }
+
+    .fi-ta-actions-header-cell {
+        @apply amber200;
+
+    }
+    .fi-striped {
+       @apply amber50;
+    }
+}
+
+
