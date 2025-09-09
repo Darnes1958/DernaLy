@@ -39,9 +39,13 @@ use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Livewire\Attributes\On;
+use Marxolity\VinDecoder\Facades\VinDecoder;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 
 class VictimAll extends Page implements HasForms,HasTable
@@ -103,8 +107,25 @@ class VictimAll extends Page implements HasForms,HasTable
                     ->searchable()
                     ->columnSpan(2)
                     ->afterStateUpdated(function ($state){
+
+
                         $this->street_id=$state;
                     }),
+                Action::make('trans')
+                 ->action(function (){
+              //       $victims=Victim::query()->where('FullNameEn',null)->limit(100)->get();
+              //       foreach ($victims as $victim){
+              //           $victim->FullNameEn=Str::apiTranslate($victim->FullName,'en');
+              //           $victim->save();
+              //       }
+                   $victims= Victim::query()->where('FullNameEn', 'like', '%' . 'Howa' . '%')->get();
+                     foreach ($victims as $victim){
+                         $victim->FullNameEn=str_replace('Howa','Howa ',$victim->FullNameEn);
+                         $victim->save();
+                     }
+
+
+                 })
 
 
 

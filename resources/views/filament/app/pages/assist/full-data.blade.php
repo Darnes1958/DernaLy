@@ -1,5 +1,10 @@
 
   <div class="flex ">
+
+
+
+
+
       @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
       @if($record->male=='ذكر')
           @if($record->is_great_grandfather)
