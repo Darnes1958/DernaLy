@@ -28,16 +28,16 @@ class Counts extends StatsOverviewWidget
     {
         return [
             Stat::make('','')
-                ->label(new HtmlString('<label class="text-indigo-600">'.__('All Victims').'</label>'))
-                ->value(new HtmlString('<label class="text-danger-600">'.Victim::count().'</label>'))
+                ->label(new HtmlString('<label class="text-indigo-600 text-4xl">'.__('All Victims').'</label>'))
+                ->value(new HtmlString('<label class="text-danger-600 text-4xl">'.Victim::count().'</label>'))
                 ->description(__('Libyans and foreigners')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">'.__('Libyans').'</span>'))
-                ->value(new HtmlString('<span class="text-danger-600">'.Victim::wherein('family_id',Family::where('country_id',1)->pluck('id'))->count().'</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600 text-4xl">'.__('Libyans').'</span>'))
+                ->value(new HtmlString('<span class="text-danger-600 text-4xl">'.Victim::wherein('family_id',Family::where('country_id',1)->pluck('id'))->count().'</span>'))
                 ->description(__('Does not include foreign wives')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">'.__('Foreigners').'</span>'))
-                ->value(new HtmlString('<span class="text-danger-600">'.Victim::wherein('family_id',Family::where('country_id','!=',1)->pluck('id'))->count().'</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600 text-4xl">'.__('Foreigners').'</span>'))
+                ->value(new HtmlString('<span class="text-danger-600 text-4xl">'.Victim::wherein('family_id',Family::where('country_id','!=',1)->pluck('id'))->count().'</span>'))
                 ->description(__('From 13 nationalities')),
             Stat::make('','')
                 ->label(new HtmlString('<span class="text-indigo-600">'.__('Male').'</span>'))

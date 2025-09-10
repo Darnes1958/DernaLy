@@ -3,6 +3,7 @@
 namespace App\Filament\App\Pages;
 
 use App\Filament\Widgets\MaleFemale;
+use App\Livewire\CusCountWidget;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
@@ -17,11 +18,11 @@ class Counts extends Page
     protected static string | \BackedEnum | null $navigationIcon = Heroicon::NumberedList;
 
     protected ?string $heading='';
-    protected static ?string $navigationLabel='الأعداد';
+
     protected static ?int $navigationSort=4;
     public static function getNavigationLabel(): string
     {
-        return __('Counts');
+        return __('Statistics of Numbers');
     }
     public function getTitle(): string|Htmlable
     {
@@ -43,10 +44,12 @@ class Counts extends Page
         }
 
     }
+
     protected function getFooterWidgets(): array
     {
        return [
-           \App\Livewire\Counts::class,
+           CusCountWidget::class,
+
         ];
     }
 }
