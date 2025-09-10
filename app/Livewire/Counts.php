@@ -28,35 +28,35 @@ class Counts extends StatsOverviewWidget
     {
         return [
             Stat::make('','')
-                ->label(new HtmlString('<label class="text-indigo-600">العدد الكلي</label>'))
+                ->label(new HtmlString('<label class="text-indigo-600">'.__('All Victims').'</label>'))
                 ->value(new HtmlString('<label class="text-danger-600">'.Victim::count().'</label>'))
-                ->description('ليبيين وأجانب'),
+                ->description(__('Libyans and foreigners')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">ليبيين</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Libyans').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::wherein('family_id',Family::where('country_id',1)->pluck('id'))->count().'</span>'))
-                ->description('لا يشمل الزوجات الأجنبيات'),
+                ->description(__('Does not include foreign wives')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">أجانب</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Foreigners').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::wherein('family_id',Family::where('country_id','!=',1)->pluck('id'))->count().'</span>'))
-                ->description('من 13 جنسية'),
+                ->description(__('From 13 nationalities')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">ذكور</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Male').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('male','ذكر')->count().'</span>')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">إناث</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Female').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('male','أنثي')->count().'</span>')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">جد</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Grand Fathers').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('is_grandfather',1)->count().'</span>')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">جده</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Grand Mothers').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('is_grandmother',1)->count().'</span>')),
 
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">أب</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Fathers').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('is_father',1)->count().'</span>')),
             Stat::make('','')
-                ->label(new HtmlString('<span class="text-indigo-600">أم</span>'))
+                ->label(new HtmlString('<span class="text-indigo-600">'.__('Mothers').'</span>'))
                 ->value(new HtmlString('<span class="text-danger-600">'.Victim::where('is_mother',1)->count().'</span>')),
 
         ];

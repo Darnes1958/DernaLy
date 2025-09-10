@@ -5,7 +5,7 @@
 
             <img  src="{{ asset('images/'.$record->Job->image) }}"  style="width: 26px; height: 26px;" />
         @endif
-            <p >{{$record->Job->name}}&nbsp;</p>
+            <p >{{$record->Job->nameJs}}&nbsp;</p>
     @endif
 
 

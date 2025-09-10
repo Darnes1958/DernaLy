@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Victim extends Model
 {
 
-
+    use HasTranslations;
+    public array $translatable = ['FullNameJs','Name1Js','Name2Js','Name3Js','Name4Js','otherNameJs'];
 
     public function Family(){
       return $this->belongsTo(Family::class);

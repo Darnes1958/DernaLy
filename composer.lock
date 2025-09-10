@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5d051e256fafca6ce06f0926eeb030b",
+    "content-hash": "4bb9013592e3a7ff05c32e4258015573",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3298,54 +3298,6 @@
                 }
             ],
             "time": "2025-07-17T05:12:15+00:00"
-        },
-        {
-            "name": "marxolity/vin-decoder",
-            "version": "v1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/marcelooblan2016/vin-decoder.git",
-                "reference": "47da41372ace2e1acf8e2301932e6f68ec10478b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/marcelooblan2016/vin-decoder/zipball/47da41372ace2e1acf8e2301932e6f68ec10478b",
-                "reference": "47da41372ace2e1acf8e2301932e6f68ec10478b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.5"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Marxolity\\VinDecoder\\Providers\\VinDecoderServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Marxolity\\VinDecoder\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Marcelo Oblan",
-                    "email": "marcelo.oblan2016@gmail.com"
-                }
-            ],
-            "description": "Get vehicle details by using vin",
-            "support": {
-                "issues": "https://github.com/marcelooblan2016/vin-decoder/issues",
-                "source": "https://github.com/marcelooblan2016/vin-decoder/tree/v1"
-            },
-            "time": "2022-10-20T14:50:01+00:00"
         },
         {
             "name": "masterminds/html5",

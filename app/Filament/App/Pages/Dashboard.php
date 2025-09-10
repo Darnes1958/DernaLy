@@ -9,7 +9,6 @@ class Dashboard extends \Filament\Pages\Dashboard
     protected ?string $heading='';
     public function mount(): void
     {
-        Log::info('dash : '.session()->get('lang_code'));
         app()->setLocale(session()->get('lang_code'));
 
     }

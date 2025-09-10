@@ -26,6 +26,8 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->font('Amiri')
+            ->brandName(__('City memory'))
             ->plugin(SpatieTranslatablePlugin ::make()
                 ->defaultLocales(['ar', 'en']))
             ->viteTheme('resources/css/filament/app/theme.css')
