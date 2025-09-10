@@ -1,10 +1,6 @@
 
   <div class="flex ">
 
-
-
-
-
       @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
       @if($record->male=='ذكر')
           @if($record->is_great_grandfather)
@@ -30,7 +26,7 @@
                   <p style="color: aqua; ">{{__('The grand mother')}} : &nbsp;&nbsp;</p>
               @else
                   @if($record->is_mother)
-                      <p style="color: aqua; ">{{__('the mother')}} : &nbsp;&nbsp;</p>
+                      <p style="color: aqua; ">{{__('The mother')}} : &nbsp;&nbsp;</p>
                   @endif
               @endif
           @endif
