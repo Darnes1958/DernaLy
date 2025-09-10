@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Road extends Model
 {
-    use HasFactory;
+    use HasTranslations;
+    public array $translatable = ['nameJs',];
     public function Street(){
         return $this->hasMany(Street::class);
     }

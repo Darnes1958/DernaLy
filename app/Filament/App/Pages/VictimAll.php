@@ -128,7 +128,7 @@ class VictimAll extends Page implements HasForms,HasTable
     public function table(Table $table): Table
     {
         return $table
-        ->extraAttributes(['class'=>'table_head_blue'])
+        ->extraAttributes(['class'=>'table_head_amber'])
         ->query(function (){
         return
             Victim::query()

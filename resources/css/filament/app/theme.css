@@ -42,6 +42,15 @@
     @apply bg-amber-100;
 }
 
+@utility gray50 {
+    @apply bg-gray-50;
+}
+@utility gray100 {
+    @apply bg-gray-200;
+}
+
+
+
 
 .fi-sidebar-nav
 {
@@ -50,15 +59,22 @@
 .fi-sidebar-item-icon {
     @apply text-teal-700;
 }
+.fi-sidebar-item-label {
+    @apply text-lg;
+}
 
 .fi-topbar {
     @apply amber50;
 }
 
 
-.table_head_blue {
+
+.table_head_amber {
     .fi-ta-header-cell {
         @apply amber200;
+    }
+    .fi-ta-header-ctn {
+        @apply amber50;
     }
 
     .fi-ta-actions-header-cell {
@@ -67,6 +83,24 @@
     }
     .fi-striped {
        @apply amber50;
+    }
+}
+.table_head_top_amber {
+
+    .fi-ta-header-ctn {
+        @apply amber50;
+    }
+}
+
+.table_head_top_gray {
+
+    .fi-ta-header-ctn {
+        @apply gray100;
+    }
+}
+.radio_text {
+    .fi-fo-radio-label-text {
+        @apply text-lg font-extrabold;
     }
 }
 

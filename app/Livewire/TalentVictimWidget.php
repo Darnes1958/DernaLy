@@ -50,7 +50,7 @@ class TalentVictimWidget extends BaseWidget
             ->paginationPageOptions([5,10,20,50])
             ->emptyStateHeading('')
             ->columns([
-                TextColumn::make('Victim.FullName')
+                TextColumn::make('Victim.FullNameJs')
                 ->searchable()
                 ->label(''),
                 ImageColumn::make('Victim.image2')

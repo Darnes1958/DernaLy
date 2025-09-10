@@ -22,7 +22,7 @@ public function getColor(): string|array|null
         self::الافريقي => 'success',
         self::الهلال_الاحمر => 'danger',
         self::الكشافة => 'Fuchsia',
-        self::مواهب => 'blue',
+        self::مواهب => 'rose',
         self::حغاظ_وأئمة => 'blue',
     };
 }
@@ -32,12 +32,12 @@ public function getColor(): string|array|null
   {
 
       return match ($this) {
-          self::مواهب => 'مواهب',
-          self::دارنس => 'دارنس',
-          self::الكشافة => 'الكشافة والمرشدات',
-          self::الافريقي => 'الافريقي',
-          self::الهلال_الاحمر => 'الهلال الاحمر',
-          self::حغاظ_وأئمة => 'حفاظ و أئمة وقيمين',
+          self::مواهب => __('Talents'),
+          self::دارنس => __('Darnes Club'),
+          self::الكشافة => __('Scouts and Guides'),
+          self::الافريقي => __('Alafriqi Club'),
+          self::الهلال_الاحمر => __('Red Crescent'),
+          self::حغاظ_وأئمة => __('Memorizers, imams and mosque administrators'),
       };
   }
 }

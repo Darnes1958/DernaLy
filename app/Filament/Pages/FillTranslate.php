@@ -2,9 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Area;
 use App\Models\Country;
 use App\Models\Familyshow;
 use App\Models\Job;
+use App\Models\Road;
 use App\Models\Street;
 use App\Models\Talent;
 use App\Models\Victim;
@@ -94,6 +96,8 @@ class FillTranslate extends Page implements HasForms
 
 
                     }),
+
+
                 Action::make('countries')
                     ->action(function (){
                         $trans = Transliterator::create('Arabic-Latin; NFD; [:Nonspacing Mark:] Remove; NFC');
@@ -174,6 +178,41 @@ class FillTranslate extends Page implements HasForms
                             $job->save();
                         }
                     }),
+                Action::make('roads')
+                    ->action(function (){
+
+                        $jobs= Road::query()->get() ;
+
+
+
+                        foreach ($jobs as $job) {
+
+                            $name = [
+                                'ar' => $job->name,
+                                'en' =>ucfirst(Str::ascii($job->name, 'ar'))
+
+                            ];
+                            $job->nameJs = $name;
+                            $job->save();
+                        }
+                    }),
+                Action::make('area')
+                    ->action(function (){
+
+                        $jobs= Area::query()->get() ;
+
+
+
+                        foreach ($jobs as $job) {
+
+                            $name = [
+                                'ar' => $job->AreaName,
+                                'en' =>ucfirst(Str::ascii($job->AreaName, 'ar'))
+                            ];
+                            $job->AreaNameJs = $name;
+                            $job->save();
+                        }
+                    }),
 
                 Action::make('family_address')
                     ->action(function (){
@@ -198,6 +237,7 @@ class FillTranslate extends Page implements HasForms
 
 
                     })
+
 
             ])->columns(12);
     }

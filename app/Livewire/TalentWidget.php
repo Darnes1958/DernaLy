@@ -27,7 +27,7 @@ class TalentWidget extends BaseWidget
     {
         return $table
             ->heading(function () {return new HtmlString('<div class="text-white text-lg ">'.$this->title.'</div>');} )
-            ->emptyStateHeading('انقر لعرض التفاصيل')
+            ->emptyStateHeading(__('Click to show details'))
             ->emptyStateIcon('heroicon-o-arrow-long-right')
             ->query(function () {
                 return Talent::query()
@@ -41,7 +41,7 @@ class TalentWidget extends BaseWidget
             ->paginated(false)
             ->columns([
 
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('nameJs')
                 ->color(function (Model $record){
                     if ($record->talentType->name=='دارنس') return 'primary';
                     if ($record->talentType->name=='الافريقي') return 'success';

@@ -24,6 +24,8 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->resourceCreatePageRedirect('index')
+            ->resourceEditPageRedirect('index')
             ->breadcrumbs(false)
             ->maxContentWidth('Full')
             ->login()
