@@ -26,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
+            ->darkMode(false)
             ->breadcrumbs(false)
             ->maxContentWidth('Full')
             ->login()

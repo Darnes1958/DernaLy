@@ -27,6 +27,7 @@ class AppPanelProvider extends PanelProvider
     {
         return $panel
             ->font('Amiri')
+            ->darkMode(false)
             ->brandName(__('City memory'))
             ->plugin(SpatieTranslatablePlugin ::make()
                 ->defaultLocales(['ar', 'en']))
