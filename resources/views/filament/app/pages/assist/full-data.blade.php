@@ -72,6 +72,12 @@
          <div class="flex ">
           <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <label >{{ucfirst($record->husband->FullNameJs)}}</label>
+             @if($record->husband->Familyshow->country_id!=$record->Familyshow->country_id)
+                 <label>&nbsp;</label>
+
+                 <img src="{{ asset('images/'.\App\Models\Country::find($record->husband->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+             @endif
+
          </div>
         @endif
 
@@ -79,6 +85,12 @@
           <div class="flex ">
             <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his wife')}} :</label>
             <label >{{ucfirst($record->wife->FullNameJs)}}</label>
+              @if($record->wife->Familyshow->country_id!=$record->Familyshow->country_id)
+                  <label>&nbsp;</label>
+
+                  <img src="{{ asset('images/'.\App\Models\Country::find($record->wife->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+              @endif
+
           </div>
         @endif
         @if($record->wife2)
@@ -87,8 +99,6 @@
             <label >{{ucfirst($record->wife2->FullNameJs)}}</label>
          </div>
         @endif
-
-
 
 
     @if($record->hisSons->count()>0)
@@ -111,8 +121,14 @@
           @php $i++ @endphp
 
         @endforeach
+          @if($record->hisSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
+              <label>&nbsp;</label>
 
-        </div>
+              <img src="{{ asset('images/'.\App\Models\Country::find($record->hisSons->first()->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+          @endif
+
+
+      </div>
     @endif
     @if($record->herSons->count()>0)
       <div class="flex">
@@ -131,6 +147,14 @@
                              echo "<label>".ucfirst($item->Name1Js)."</label>";
                          $i++;
                     }
+                    @endphp
+
+                           @if($record->herSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
+                             <img src=" {{ asset('images/'.\App\Models\Country::find($record->herSons->first()->Familyshow->country_id)->image) }} " style="width: 30px; height: 30px;" />
+                           @endif
+
+                   @php
+
                     if (!$record->husband) echo "<label>&nbsp&nbsp;(".__('from')." : &nbsp ".ucfirst($item->Name2Js)."&nbsp;".ucfirst($item->Name3Js)."&nbsp;".ucfirst($item->Name4Js).")</label>";
                 }
                 else {

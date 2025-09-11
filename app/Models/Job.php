@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\jobType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
@@ -10,7 +11,11 @@ class Job extends Model
 {
     use HasTranslations;
     public array $translatable = ['nameJs',];
+
     public function Victim(){
       return $this->hasMany(Victim::class);
     }
+    protected $casts =[
+        'jobType'=>jobType::class,
+    ];
 }
