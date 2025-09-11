@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -19,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Nette\Utils\Image;
+use Spatie\Browsershot\Browsershot;
+use Spatie\LaravelPdf\Facades\Pdf;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +39,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Pdf::default()
+
+            ->withBrowsershot(function (Browsershot $shot) {
+                $shot->noSandbox()
+                    ->timeout(240)
+                    ->setChromePath(Setting::first()->exePath);
+            })
+            ->margins(10, 10, 20, 10, );
         Model::unguard();
         Table::configureUsing(fn(Table $table) => $table->defaultNumberLocale('nl'));
         CreateAction::configureUsing(fn(CreateAction $createAction) => $createAction->label('إضافة'));
@@ -48,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
         TextColumn::configureUsing(function (TextColumn $column): void {
             $column->translateLabel();
         });
+        Textarea::configureUsing(function (Textarea $entry): void {$entry->translateLabel();});
         IconColumn::configureUsing(function (IconColumn $column): void {
             $column->translateLabel();
         });

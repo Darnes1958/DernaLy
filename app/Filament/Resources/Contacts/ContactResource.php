@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\App\Resources\Contacts;
+namespace App\Filament\Resources\Contacts;
 
-use App\Filament\App\Resources\Contacts\Pages\CreateContact;
-use App\Filament\App\Resources\Contacts\Pages\EditContact;
-use App\Filament\App\Resources\Contacts\Pages\ListContacts;
-use App\Filament\App\Resources\Contacts\Pages\ViewContact;
-use App\Filament\App\Resources\Contacts\Schemas\ContactForm;
-use App\Filament\App\Resources\Contacts\Schemas\ContactInfolist;
-use App\Filament\App\Resources\Contacts\Tables\ContactsTable;
+use App\Filament\Resources\Contacts\Pages\CreateContact;
+use App\Filament\Resources\Contacts\Pages\EditContact;
+use App\Filament\Resources\Contacts\Pages\ListContacts;
+use App\Filament\Resources\Contacts\Pages\ViewContact;
+use App\Filament\Resources\Contacts\Schemas\ContactForm;
+use App\Filament\Resources\Contacts\Schemas\ContactInfolist;
+use App\Filament\Resources\Contacts\Tables\ContactsTable;
 use App\Models\Contact;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -21,6 +21,7 @@ class ContactResource extends Resource
     protected static ?string $model = Contact::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
 
     public static function form(Schema $schema): Schema
     {

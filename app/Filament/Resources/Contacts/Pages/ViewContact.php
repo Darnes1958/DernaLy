@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\App\Resources\Contacts\Pages;
+namespace App\Filament\Resources\Contacts\Pages;
 
-use App\Filament\App\Resources\Contacts\ContactResource;
+use App\Filament\Resources\Contacts\ContactResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 

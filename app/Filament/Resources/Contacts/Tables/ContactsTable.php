@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\App\Resources\Contacts\Tables;
+namespace App\Filament\Resources\Contacts\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -36,12 +36,10 @@ class ContactsTable
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
+
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+               //
             ]);
     }
 }

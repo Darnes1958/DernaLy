@@ -4,6 +4,7 @@ namespace App\Filament\App\Pages;
 
 use App\Filament\App\Clusters\Statistics\StatisticsCluster;
 use App\Filament\Widgets\MaleFemale;
+use App\Livewire\CusAddCountWidget;
 use App\Livewire\CusCountWidget;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
@@ -11,24 +12,24 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 
-class Counts extends Page
+class AddCounts extends Page
 {
 
 
-    protected  string $view = 'filament.app.pages.counts';
+    protected  string $view = 'filament.app.pages.add-counts';
     protected static string | \BackedEnum | null $navigationIcon = Heroicon::NumberedList;
 
     protected ?string $heading='';
     protected static ?string $cluster =StatisticsCluster::class;
+    protected static ?int $navigationSort=2;
 
-    protected static ?int $navigationSort=1;
     public static function getNavigationLabel(): string
     {
-        return __('Statistics of Numbers');
+        return __('Addresses');
     }
     public function getTitle(): string|Htmlable
     {
-        return __('Statistics of Numbers');
+        return __('Addresses');
     }
 
     #[On('take_lang')]
@@ -50,7 +51,7 @@ class Counts extends Page
     protected function getFooterWidgets(): array
     {
        return [
-           CusCountWidget::class,
+           CusAddCountWidget::class,
 
         ];
     }

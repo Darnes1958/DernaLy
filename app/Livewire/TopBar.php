@@ -3,23 +3,30 @@
 namespace App\Livewire;
 
 use App\Filament\App\Pages\Dashboard;
-use App\Models\Customers;
-use App\Models\OurCompany;
-use App\Models\User;
+
+
+use App\Models\Contact;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Support\Facades\Auth;
+
 use Livewire\Component;
 
-class TopBar extends Component implements  HasForms
+class TopBar extends Component implements  HasActions, HasSchemas
 {
+    use InteractsWithActions;
+    use InteractsWithSchemas;
 
 
-    use InteractsWithForms;
     public $status;
 
 
@@ -31,11 +38,51 @@ class TopBar extends Component implements  HasForms
         redirect(request()->header('Referer'));
 
     }
+
     public function mount()
     {
         $this->form->fill(['status'=>app()->getLocale()]);
     }
 
+    public function contactus(): Action
+    {
+        return Action::make('ContactUs')
+            ->label(__('Contact us'))
+            ->action(function (array $data)
+            {
+                Contact::create($data);
+            })
+
+            ->modalIcon('heroicon-o-exclamation-triangle')
+            ->modalHeading('أهلا وسهلا بكم')
+            ->modalDescription('الرجاء كتابة فحوي رسالتكم , وتعبئة رقم الهاتف والبريد الالكتروني إذا رغبتم')
+
+            ->schema([
+                Grid::make()
+                 ->schema([
+                     Textarea::make('message')
+                         ->rows(3)
+                         ->required()->columnSpan(2),
+                     TextInput::make('tel')
+                         ->suffixIcon(Heroicon::Phone)
+                         ->tel(),
+                     TextInput::make('email')
+                         ->suffixIcon(Heroicon::AtSymbol)
+                         ->email()
+
+                 ])->columns(2)
+            ])
+            ->link();
+    }
+
+    public function form2(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Action::make('any')
+            ])
+            ;
+    }
     public function form(Schema $schema): Schema
     {
         return $schema

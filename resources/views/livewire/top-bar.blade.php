@@ -9,6 +9,11 @@
 
     {{$this->form}}
 
+           <div>
+               {{$this->contactus}}
+               <x-filament-actions::modals />
+           </div>
+
 
 
 </div>

@@ -5,13 +5,15 @@ namespace App\Filament\App\Pages;
 use App\Filament\App\Clusters\Statistics\StatisticsCluster;
 use App\Filament\Widgets\MaleFemale;
 use App\Livewire\CusCountWidget;
+use App\Livewire\CusSexWidget;
+use App\Livewire\YearWidget;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 
-class Counts extends Page
+class Years extends Page
 {
 
 
@@ -21,14 +23,14 @@ class Counts extends Page
     protected ?string $heading='';
     protected static ?string $cluster =StatisticsCluster::class;
 
-    protected static ?int $navigationSort=1;
+    protected static ?int $navigationSort=4;
     public static function getNavigationLabel(): string
     {
-        return __('Statistics of Numbers');
+        return __('Year of Birth');
     }
     public function getTitle(): string|Htmlable
     {
-        return __('Statistics of Numbers');
+        return __('Year of Birth');
     }
 
     #[On('take_lang')]
@@ -50,7 +52,7 @@ class Counts extends Page
     protected function getFooterWidgets(): array
     {
        return [
-           CusCountWidget::class,
+           YearWidget::class,
 
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Filament\App\Pages;
 use App\Enums\jobType;
 use App\Enums\qualyType;
 
+use App\Livewire\Traits\PublicTrait;
 use App\Models\Country;
 use App\Models\Family;
 use App\Models\Familyshow;
@@ -22,10 +23,12 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\MaxWidth;
@@ -44,6 +47,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
@@ -54,6 +58,7 @@ use Transliterator;
 
 class VictimAll extends Page implements HasForms,HasTable
 {
+    use PublicTrait;
 
     use InteractsWithForms,InteractsWithTable;
     protected string $view = 'filament.app.pages.victim-all';
@@ -121,6 +126,44 @@ class VictimAll extends Page implements HasForms,HasTable
 
                         $this->street_id=$state;
                     }),
+                Action::make('printBigFamily')
+                    ->label('pdf للعائلة')
+                   ->visible(fn(): bool => $this->familyshow_id!=NULL)
+
+                    ->color('success')
+                    ->icon('heroicon-m-printer')
+                    ->action(function (){
+
+                        \Spatie\LaravelPdf\Facades\Pdf::view('PDF.PdfAllVictims_5',
+                            [
+                                'familyshow_id' => $this->familyshow_id,'street_id' => $this->street_id,'str_fam'=>'fam'])
+                            ->footerView('PDF.footer')
+
+                            ->save(public_path().'/bigFamily.pdf');
+
+                        return Response::download(public_path().'/bigFamily.pdf',
+                            'filename.pdf', self::ret_spatie_header());
+
+                    }),
+                Action::make('prinStreet')
+                    ->label('pdf للشارع')
+                    ->visible(fn(): bool => $this->street_id!=NULL)
+
+                    ->color('info')
+                    ->icon('heroicon-m-printer')
+                    ->action(function (){
+
+                        \Spatie\LaravelPdf\Facades\Pdf::view('PDF.PdfAllVictims_5',
+                            [
+                                'familyshow_id' => $this->familyshow_id,'street_id' => $this->street_id,'str_fam'=>'str'])
+                            ->footerView('PDF.footer')
+
+                            ->save(public_path().'/bigFamily.pdf');
+
+                        return Response::download(public_path().'/bigFamily.pdf',
+                            'filename.pdf', self::ret_spatie_header());
+
+                    })
 
 
 
