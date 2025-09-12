@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Victims\Tables;
 
 
 use App\Models\Victim;
+
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -37,9 +38,17 @@ class VictimsTable
                 ImageColumn::make('image2')
                     ->stacked()
                     ->circular(),
+            ])
+            ->defaultSort('created_at','desc')
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
                 Action::make('delete')
                     ->iconButton()
-                    ->visible(Auth::user()->can('delete victim'))
+
                     ->icon('heroicon-s-trash')
                     ->requiresConfirmation()
                     ->action(function (Victim $record){
@@ -47,7 +56,7 @@ class VictimsTable
                     }),
                 Action::make('arc')
                     ->iconButton()
-                    ->visible(Auth::user()->can('delete victim'))
+
                     ->icon('heroicon-s-archive-box')
                     ->requiresConfirmation()
                     ->modalHeading('نقل السجل للأرشيف')
@@ -55,7 +64,7 @@ class VictimsTable
                     ->fillForm(fn (Victim $record): array => [
                         'notes' => $record->notes,
                     ])
-                    ->form([
+                    ->schema([
                         TextInput::make('notes')
                             ->label('ملاحظات')
                     ])
@@ -72,14 +81,7 @@ class VictimsTable
                         $record->delete();
 
                     }),
-            ])
-            ->defaultSort('created_at','desc')
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+
             ])
             ->toolbarActions([
                 //
