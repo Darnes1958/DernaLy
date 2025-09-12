@@ -102,8 +102,7 @@ class VictimAll extends Page implements HasForms,HasTable
                     ->hiddenLabel()
                     ->prefix(__('Family'))
                     ->options(function () {
-                        return Familyshow::query()->whereNotIn('id',[41, 89 , 94 , 106, 196, 220, 259,
-                            274, 293, 300, 308, 319, 337, 345, 346, 377, 1013])
+                        return Familyshow::query()->where('country_id',1)
                             ->orderBy('name')->pluck('nameJs', 'id');
                     })
                     ->preload()
