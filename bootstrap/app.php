@@ -13,8 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
       //  $middleware->web(append: \App\Http\Middleware\SetLocale::class);
         $middleware->appendToGroup('web',\App\Http\Middleware\SetLocale::class);
+        $middleware->appendToGroup('web',\App\Http\Middleware\TrackVisitors::class);
        // $middleware->appendToGroup('filament',\App\Http\Middleware\SetLocale::class);
         $middleware->append(\App\Http\Middleware\SetLocale::class);
+        $middleware->append(\App\Http\Middleware\TrackVisitors::class);
 
     })
     ->withExceptions(function (Exceptions $exceptions): void {
