@@ -22,7 +22,9 @@ class ShowVisitor extends Page implements HasTable
             })
             ->columns([
                 TextColumn::make('ip'),
-                TextColumn::make('user_agent'),
+                TextColumn::make('user_agent')
+                    ->limit(50, end: ' (more)'),
+
                 TextColumn::make('browser'),
                 TextColumn::make('platform'),
                 TextColumn::make('device'),
