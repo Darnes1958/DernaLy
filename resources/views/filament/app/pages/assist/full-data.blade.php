@@ -67,10 +67,24 @@
   </div>
 
 
+  @if(!$record->hisFather && $record->hisMother)
+      <div class="flex ">
+          @if($record->male=='ذكر') <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his mother')}} :</label>
+          @else <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her mother')}} :</label> @endif
+
+          <label >{{ucfirst($record->hisMother->FullNameJs)}}</label>
+          @if($record->hisMother->Familyshow->country_id!=$record->Familyshow->country_id)
+              <label>&nbsp;</label>
+
+              <img src="{{ asset('images/'.\App\Models\Country::find($record->hisMother->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+          @endif
+
+      </div>
+  @endif
 
         @if($record->husband)
          <div class="flex ">
-          <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+          <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her husband')}} :</label>
           <label >{{ucfirst($record->husband->FullNameJs)}}</label>
              @if($record->husband->Familyshow->country_id!=$record->Familyshow->country_id)
                  <label>&nbsp;</label>
