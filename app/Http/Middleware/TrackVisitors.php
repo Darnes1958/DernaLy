@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Visitor;
 use Closure;
+use GPBMetadata\Google\Api\Log;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Jenssegers\Agent\Agent;
@@ -27,6 +28,22 @@ class TrackVisitors
                 $country = $position->countryName;
                 $city = $position->cityName;
             }
+            $visitor= Visitor::where('ip', request()->ip())->orderByDesc('created_at')->first() ;
+            if ($visitor){
+                $from = now();
+                $to = $visitor->created_at;
+                $diffInMinutes = $to->diffInMinutes($from);
+                if ($diffInMinutes>60)
+                    Visitor::create([
+                        'ip' => request()->ip(),
+                        'user_agent' => request()->header('User-Agent'),
+                        'browser' => $agent->browser(),
+                        'platform' => $agent->platform(),
+                        'device' => $agent->device(),
+                        'countryName' => $country,
+                        'cityName' => $city,
+                    ]);
+            } else
             Visitor::create([
                 'ip' => request()->ip(),
                 'user_agent' => request()->header('User-Agent'),
