@@ -28,7 +28,9 @@ class VictimsTable
                 TextColumn::make('Street.StrName'),
                 TextColumn::make('male'),
                 TextColumn::make('year'),
-                ImageColumn::make('image'),
+                ImageColumn::make('image2')
+                    ->stacked()
+                    ->circular(),
             ])
             ->defaultSort('created_at','desc')
             ->filters([

@@ -432,7 +432,12 @@ class VictimForm
                 Toggle::make('inWork'),
                 Toggle::make('inSave'),
                 Toggle::make('guests'),
-                Textarea::make('image2'),
+
+                FileUpload::make('image2')
+                    ->multiple()
+                    ->imageEditor()
+                    ->directory('form-attachments'),
+
 
                 Hidden::make('user_id')
                     ->default(Auth::id()),
