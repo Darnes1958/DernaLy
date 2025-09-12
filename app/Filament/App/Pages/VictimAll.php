@@ -116,7 +116,7 @@ class VictimAll extends Page implements HasForms,HasTable
                 Select::make('street_id')
                     ->hiddenLabel()
                     ->prefix(__('Address'))
-                    ->options(Street::all()->pluck('StrNameJs','id'))
+                    ->options(Street::all()->pluck('StrName','id'))
                     ->preload()
                     ->live()
                     ->searchable()

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Family extends Model
 {
     use HasFactory;
+    public function Familyshow(){
+        return $this->belongsTo(Familyshow::class);
+    }
 
   public function Bait(){
     return $this->hasMany(Bait::class);

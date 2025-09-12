@@ -9,7 +9,9 @@ class Dashboard extends \Filament\Pages\Dashboard
     protected ?string $heading='';
     public function mount(): void
     {
-        app()->setLocale(session()->get('lang_code'));
+        if (session()->has('lang_code')) app()->setLocale(session()->get('lang_code'));
+        else app()->setLocale('ar');
+
 
     }
     public function getColumns(): int|array
