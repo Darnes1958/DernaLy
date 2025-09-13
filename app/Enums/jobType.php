@@ -22,6 +22,16 @@ enum jobType: int implements HasLabel
 
   public function getLabel(): ?string
   {
-    return $this->name;
+      return match ($this) {
+          self::التعليم => __('Education'),
+          self::التعليم_العالي => __('Higher education'),
+          self::الصحة => __('Health'),
+          self::النيابة => __('Judiciary'),
+          self::القوات_المسلحة => __('Armed Forces'),
+          self::اعمال_حرة => __('Freelance work'),
+          self::مهنية => __('Professional'),
+          self::الداخلية => __('Interior'),
+      };
+
   }
 }

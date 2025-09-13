@@ -18,8 +18,16 @@ class Guests extends Page
     protected  string $view = 'filament.app.pages.guests';
 
     protected ?string $heading='';
-    protected static ?string $navigationLabel='ضيوف';
-    protected static ?int $navigationSort=6;
+    public static function getNavigationLabel(): string
+    {
+        return __('Guests');
+    }
+    public function mount(): void
+    {
+        if (session()->has('lang_code')) app()->setLocale(session()->get('lang_code'));
+        else app()->setLocale('ar');
+    }
+
 
     protected function getFooterWidgets(): array
     {

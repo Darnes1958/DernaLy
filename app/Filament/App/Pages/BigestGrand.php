@@ -16,7 +16,23 @@ class BigestGrand extends Page
 
     protected  string $view = 'filament.app.pages.bigest-grand';
     protected ?string $heading='';
-    protected static ?string $navigationLabel='أكبر الأسر';
+
+public static function getNavigationSort(): ?int
+{
+    return 10;
+}
+
+    public static function getNavigationLabel(): string
+    {
+        return __('The largest families');
+    }
+    public function mount(): void
+    {
+        if (session()->has('lang_code')) app()->setLocale(session()->get('lang_code'));
+        else app()->setLocale('ar');
+    }
+
+
     protected static ?int $navigationSort=6;
     public function getFooterWidgetsColumns(): int |  array
     {

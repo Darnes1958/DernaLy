@@ -10,7 +10,7 @@ class Victim extends Model
 {
 
     use HasTranslations;
-    public array $translatable = ['FullNameJs','Name1Js','Name2Js','Name3Js','Name4Js','otherNameJs'];
+    public array $translatable = ['FullNameJs','Name1Js','Name2Js','Name3Js','Name4Js','otherNameJs','notesJs'];
 
     public function Family(){
       return $this->belongsTo(Family::class);

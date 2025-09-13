@@ -32,12 +32,12 @@ class GraetGrandFather extends BaseWidget
       }
       )
         ->queryStringIdentifier('tarkeba')
-      ->heading(new HtmlString('<div class="text-primary-400 text-lg">أجداد الأب والأم</div>'))
+      ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('Paternal and Maternal Grandparents').'</div>'))
 
 
       ->striped()
       ->columns([
-        TextColumn::make('FullName')
+        TextColumn::make('FullNameJs')
           ->sortable()
             ->action(function (Great_count $record){
                 $this->dispatch('take_grand',grand: $record->id);
@@ -48,18 +48,18 @@ class GraetGrandFather extends BaseWidget
         TextColumn::make('thesum')
           ->color('warning')
           ->sortable()
-          ->label('عدد الأسرة'),
+          ->label(__('Count')),
           ImageColumn::make('image2')
               ->label('')
               ->tooltip(function ($record){
-                  if ($record->image2 !=null) return 'انقر هنا لعرض الصور بحجم أكبر' ;
+                  if ($record->image2 !=null) return 'Click here to view larger images' ;
                   else return null;})
               ->action(
                   Action::make('show_images')
                       ->visible(function ($record){return $record->image2 !=null;})
                       ->label(' ')
                       ->modalSubmitAction(false)
-                      ->modalCancelActionLabel('عودة')
+                      ->modalCancelActionLabel(__('back'))
                       ->infolist([
                           ImageEntry::make('image2')
                               ->label('')

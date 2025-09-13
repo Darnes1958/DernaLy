@@ -34,28 +34,28 @@ class WorkWidget extends BaseWidget
             )
 
             ->queryStringIdentifier('inWork')
-            ->heading(new HtmlString('<div class="text-primary-400 text-lg">في العمل ('.Victim::where('inWork',1)->count().')</div>'))
+            ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('During work').' ('.Victim::where('inWork',1)->count().')</div>'))
             ->defaultPaginationPageOption(5)
 
             ->defaultSort('street_id')
             ->striped()
             ->columns([
-                TextColumn::make('FullName')
+                TextColumn::make('FullNameJs')
                     ->sortable()
                     ->color('blue')
                     ->searchable()
-                    ->label('الاسم')
+                    ->label('FullName')
                     ->formatStateUsing(fn (Victim $record): View => view(
                         'filament.app.pages.assist.data-with-images',
                         ['record' => $record],
                     )),
-                TextColumn::make('Street.StrName')
+                TextColumn::make('Street.StrNameJs')
                     ->color('warning')
                     ->sortable()
-                    ->label('العنوان'),
+                  ,
                 ImageColumn::make('image2')
                     ->height(160)
-                    ->label('')
+                    ->label(__('Image'))
                     ->limit(1)
                     ->circular(),
             ]);

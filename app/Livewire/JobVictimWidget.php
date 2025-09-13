@@ -52,7 +52,7 @@ class JobVictimWidget extends BaseWidget
             ->paginationPageOptions([5,8,20,50])
             ->emptyStateHeading('')
             ->columns([
-                TextColumn::make('FullName')
+                TextColumn::make('FullNameJs')
                     ->searchable()
                     ->label(''),
                 ImageColumn::make('image2')

@@ -11,8 +11,6 @@ class Dashboard extends \Filament\Pages\Dashboard
     {
         if (session()->has('lang_code')) app()->setLocale(session()->get('lang_code'));
         else app()->setLocale('ar');
-
-
     }
     public function getColumns(): int|array
     {

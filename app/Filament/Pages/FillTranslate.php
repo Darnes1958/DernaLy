@@ -24,7 +24,7 @@ class FillTranslate extends Page implements HasForms
     use InteractsWithForms;
     protected string $view = 'filament.pages.fill-translate';
 
-    protected static bool $shouldRegisterNavigation=false;
+  //  protected static bool $shouldRegisterNavigation=false;
 
     public function form(Schema $schema): Schema
     {
@@ -141,6 +141,26 @@ class FillTranslate extends Page implements HasForms
 
 
                     }),
+                Action::make('notes')
+                    ->action(function (){
+
+                        $jobs= Victim::query()->where('notes','!=',null)->get() ;
+
+
+
+                        foreach ($jobs as $job) {
+                            $tr = new GoogleTranslate(); // Translates to 'en' from auto-detected language by default
+                            $tr->setSource('ar');
+                            $tr->setTarget('en');
+                            $name = [
+                                'ar' => $job->notes,
+                                'en' => $tr->translate($job->notes)
+                            ];
+                            $job->notesJs = $name;
+                            $job->save();
+                        }
+                    }),
+
                 Action::make('jobs')
                     ->action(function (){
 

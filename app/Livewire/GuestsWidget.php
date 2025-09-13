@@ -32,23 +32,23 @@ class GuestsWidget extends BaseWidget
             )
 
             ->queryStringIdentifier('guests')
-            ->heading(new HtmlString('<div class="text-primary-400 text-lg">ضيوف ('.Victim::where('guests',1)->count().')</div>'))
+            ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('Guests').' ('.Victim::where('guests',1)->count().')</div>'))
             ->defaultPaginationPageOption(5)
             ->defaultSort('street_id')
             ->striped()
             ->columns([
-                TextColumn::make('FullName')
+                TextColumn::make('FullNameJs')
                     ->sortable()
+                    ->label('FullName')
                     ->color('blue')
-                    ->searchable()
-                    ->label('الاسم'),
-                TextColumn::make('notes')
+                    ->searchable(),
+                TextColumn::make('notesJs')
                     ->color('warning')
-                    ->sortable()
-                    ->label('البيان'),
+                    ->sortable(),
+
                 ImageColumn::make('image2')
                     ->height(160)
-                    ->label('')
+                    ->label('Image')
                     ->limit(1)
                     ->circular(),
 

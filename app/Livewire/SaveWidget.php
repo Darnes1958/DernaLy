@@ -27,27 +27,27 @@ class SaveWidget extends BaseWidget
             }
             )
             ->queryStringIdentifier('inSave')
-            ->heading(new HtmlString('<div class="text-primary-400 text-lg">منقذين ('.Victim::where('inSave',1)->count().')</div>'))
+            ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('Rescuers').' ('.Victim::where('inSave',1)->count().')</div>'))
             ->defaultPaginationPageOption(5)
             ->defaultSort('street_id')
             ->striped()
             ->columns([
-                TextColumn::make('FullName')
+                TextColumn::make('FullNameJs')
                     ->sortable()
                     ->color('blue')
+                    ->label('FullName')
                     ->searchable()
-                    ->label('الاسم')
                     ->formatStateUsing(fn (Victim $record): View => view(
                         'filament.app.pages.assist.data-with-images',
                         ['record' => $record],
                     )),
-                TextColumn::make('notes')
+                TextColumn::make('notesJs')
                     ->color('warning')
-                    ->sortable()
-                    ->label('البيان'),
+                    ->sortable(),
+
                 ImageColumn::make('image2')
                     ->height(160)
-                    ->label('')
+                    ->label(__('Image'))
                     ->limit(1)
                     ->circular(),
             ]);

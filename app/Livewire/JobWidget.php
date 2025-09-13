@@ -27,7 +27,7 @@ class JobWidget extends BaseWidget
     {
         return $table
             ->heading(function () {return new HtmlString('<div class="text-white text-lg ">'.$this->title.'</div>');} )
-            ->emptyStateHeading('انقر لعرض التفاصيل')
+            ->emptyStateHeading(__('Click here to view details'))
             ->emptyStateIcon('heroicon-o-arrow-long-right')
             ->query(function () {
                 $query= Job::query()
@@ -42,7 +42,7 @@ class JobWidget extends BaseWidget
             ->defaultPaginationPageOption(8)
             ->columns([
 
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('nameJs')
                     ->action(function (Model $record) {
                         $this->dispatch('TakeJobId',job_id: $record->id);
                     })

@@ -15,7 +15,18 @@ class GrandTree extends Page
     protected static string | BackedEnum | null $navigationIcon=Heroicon::UserCircle;
     protected string $view = 'filament.app.pages.grand-tree';
     protected ?string $heading='';
-    protected static ?string $navigationLabel='أجداد الأب والأم';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Paternal and Maternal Grandparents');
+    }
+    public function mount(): void
+    {
+        if (session()->has('lang_code')) app()->setLocale(session()->get('lang_code'));
+        else app()->setLocale('ar');
+    }
+
+
     protected static ?int $navigationSort=6;
 
     public function getFooterWidgetsColumns(): int | array

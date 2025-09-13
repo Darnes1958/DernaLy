@@ -22,24 +22,24 @@ class FamilyShowWidget extends BaseWidget
                 // ...
             )
             ->queryStringIdentifier('familiesshow')
-            ->heading(new HtmlString('<div class="text-primary-400 text-lg">العدد حسب العائلات</div>'))
+            ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('count by family').'</div>'))
             ->defaultPaginationPageOption(5)
 
             ->defaultSort('victim_count','desc')
             ->striped()
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('nameJs')
                     ->sortable()
                     ->action(function (Familyshow $record){
                         $this->dispatch('take_family_show_id',family_show_id: $record->id);
                     })
                     ->color('blue')
                     ->searchable()
-                    ->label('العائلة'),
+                    ->label(__('Family')),
                 TextColumn::make('victim_count')
                     ->color('warning')
                     ->sortable()
-                    ->label('العدد')
+                    ->label(__('Count'))
                     ->counts('Victim'),
 
 

@@ -56,28 +56,28 @@ class GrandSons extends BaseWidget
       }
       )
       ->queryStringIdentifier('grand')
-      ->heading(new HtmlString('<div class="text-primary-400 text-lg">الأبناء وأحفادهم</div>'))
+
       ->striped()
       ->columns([
-        TextColumn::make('FullName')
+        TextColumn::make('FullNameJs')
 
             ->formatStateUsing(fn (Victim $record): View => view(
                 'filament.app.pages.assist.full-data',
                 ['record' => $record],
             ))
-          ->searchable()
-          ->label('الإسم '),
+          ->searchable(),
+
           ImageColumn::make('image2')
               ->label('')
               ->tooltip(function ($record){
-                  if ($record->image2 !=null) return 'انقر هنا لعرض الصور بحجم أكبر' ;
+                  if ($record->image2 !=null) return __('Click here to view larger images') ;
                   else return null;})
               ->action(
                   Action::make('show_images')
                       ->visible(function ($record){return $record->image2 !=null;})
                       ->label(' ')
                       ->modalSubmitAction(false)
-                      ->modalCancelActionLabel('عودة')
+                      ->modalCancelActionLabel(__('back'))
                       ->schema([
                           ImageEntry::make('image2')
                               ->label('')
