@@ -393,6 +393,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->color('info')
                                             ->label('الوظيفة'),
                                         TextEntry::make('VicTalent.Talent.nameJs')
+                                            ->columnSpanFull()
                                             ->visible(function (Model $record){
                                                 return VicTalent::where('victim_id',$record->id)->exists() ;
                                             })

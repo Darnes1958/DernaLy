@@ -2,6 +2,8 @@
 
 namespace App\Filament\Pages;
 
+use App\Livewire\VisitorsCityWidget;
+use App\Livewire\VisitorsCountryWidget;
 use App\Models\Visitor;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
@@ -13,6 +15,14 @@ class ShowVisitor extends Page implements HasTable
 {
     use InteractsWithTable;
     protected string $view = 'filament.pages.show-visitor';
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            VisitorsCountryWidget::class,
+            VisitorsCityWidget::class,
+        ];
+    }
 
     public function table(Table $table): Table
     {
