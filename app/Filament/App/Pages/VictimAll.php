@@ -399,7 +399,10 @@ class VictimAll extends Page implements HasForms,HasTable
 
                                             ->color('info')
                                             ->label('المواهب'),
-                                        TextEntry::make('notes')
+                                        TextEntry::make('notesJs')
+                                            ->visible(function (Model $record){
+                                                return $record->notesJs;
+                                            })
                                             ->label('')
 
                                     ])
