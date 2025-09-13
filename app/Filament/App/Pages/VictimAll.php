@@ -248,13 +248,13 @@ class VictimAll extends Page implements HasForms,HasTable
                     ->modalWidth(Width::SevenExtraLarge)
                     ->icon('heroicon-s-eye')
                     ->modalSubmitAction(false)
-                    ->modalCancelActionLabel('عودة')
+                    ->modalCancelActionLabel(__('back'))
                     ->schema([
                        Section::make()
                             ->schema([
                                 Section::make()
                                     ->schema([
-                                        TextEntry::make('FullName')
+                                        TextEntry::make('FullNameJs')
                                             ->color(function (Victim $record){
                                                 if ($record->male=='ذكر') return 'primary';  else return 'Fuchsia';})
                                             ->columnSpan(3)
@@ -265,22 +265,22 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->visible(function (Victim $record){return $record->year!=null;})
                                             ->inlineLabel()
                                             ->color('rose')
-                                            ->label(new HtmlString('<span style="color: yellow">مواليد</span>')),
-                                        TextEntry::make('sonOfFather.FullName')
+                                            ->label(new HtmlString('<span style="color: yellow">'.__('year').'</span>')),
+                                        TextEntry::make('hisFather.FullName')
                                             ->visible(function (Victim $record){
                                                 return $record->father_id;
                                             })
                                             ->color('info')
-                                            ->label('والده')
+                                            ->label(__('his father'))
                                             ->size( TextSize::Large)
 
                                             ->columnSpanFull(),
-                                        TextEntry::make('sonOfMother.FullName')
+                                        TextEntry::make('hisMother.FullName')
                                             ->visible(function (Victim $record){
                                                 return $record->mother_id;
                                             })
                                             ->color('Fuchsia')
-                                            ->label('والدته')
+                                            ->label(__('his mother'))
                                             ->size(TextSize::Large)
 
                                             ->columnSpanFull(),
@@ -290,7 +290,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                                 return $record->wife_id;
                                             })
                                             ->color('Fuchsia')
-                                            ->label('زوجته')
+                                            ->label(__('his wife'))
                                             ->size(TextSize::Large)
                                             ->separator(',')
                                             ->columnSpanFull(),
@@ -299,23 +299,23 @@ class VictimAll extends Page implements HasForms,HasTable
                                                 return $record->wife2_id;
                                             })
                                             ->color('Fuchsia')
-                                            ->label('زوجته الثانية')
+                                            ->label(__('his second wife'))
                                             ->size(TextSize::Large)
                                             ->columnSpanFull(),
-                                        TextEntry::make('husband.FullName')
+                                        TextEntry::make('husband.FullNameJs')
                                             ->visible(function (Victim $record){
                                                 return $record->husband_id;
                                             })
-                                            ->label('زوجها')
+                                            ->label(__('her husband'))
                                             ->badge()
                                             ->separator(',')
                                             ->columnSpanFull(),
 
-                                        TextEntry::make('hisSons.Name1')
+                                        TextEntry::make('hisSons.Name1Js')
                                             ->visible(function (Victim $record){
                                                 return $record->is_father;
                                             })
-                                            ->label('أبناءه')
+                                            ->label(__('his sons'))
                                             ->color(function( )  {
                                                 self::$ser++;
 
@@ -338,37 +338,31 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->visible(function (Victim $record){
                                                 return $record->is_mother;
                                             })
-                                            ->label('أبناءها')
+                                            ->label(__('her sons'))
                                             ->badge()
                                             ->separator(',')
                                             ->columnSpanFull(),
-                                        TextEntry::make('Familyshow.name')
+                                        TextEntry::make('Familyshow.nameJs')
                                             ->color('info')
-                                            ->label('العائلة'),
-                                        TextEntry::make('Family.FamName')
-                                            ->visible(function (){
-                                                return $this->familyshow_id && Family::where('familyshow_id',$this->familyshow_id)->count()>1;
-                                            })
-                                            ->color('info')
-                                            ->label('التسمية'),
-                                        TextEntry::make('Family.Tribe.TriName')
+                                            ->label(__('Family')),
+                                        TextEntry::make('Family.Tribe.TriNameJs')
                                             ->color('info')
                                             ->label('القبيلة'),
-                                        TextEntry::make('Street.StrName')
+                                        TextEntry::make('Street.StrNameJs')
                                             ->color('info')
-                                            ->label('العنوان'),
-                                        TextEntry::make('Street.Area.AreaName')
+                                            ->label(__('address')),
+                                        TextEntry::make('Street.Area.AreaNameJs')
                                             ->color('info')
-                                            ->label('المحلة'),
+                                            ->label(__('Locality')),
 
 
-                                        TextEntry::make('Job.name')
+                                        TextEntry::make('Job.nameJs')
                                             ->visible(function (Model $record){
                                                 return $record->job_id;
                                             })
                                             ->color('info')
                                             ->label('الوظيفة'),
-                                        TextEntry::make('VicTalent.Talent.name')
+                                        TextEntry::make('VicTalent.Talent.nameJs')
                                             ->visible(function (Model $record){
                                                 return VicTalent::where('victim_id',$record->id)->exists() ;
                                             })

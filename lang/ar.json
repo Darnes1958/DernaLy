@@ -86,6 +86,7 @@
     "Address" : "العنوان",
     "Addresses" : "العناوين",
     "By Roads": "بالشوارع الرئيسية",
+    "Locality": "المحلة",
     "By Localities": "بالمحلات",
     "Number of victims by Locality": "عدد الضحايا حسب المحلة",
     "Number of victims by Roads": "عدد الضحايا حسب الشوارع الرئيسية",
