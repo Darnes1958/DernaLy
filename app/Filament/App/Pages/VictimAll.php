@@ -385,7 +385,6 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->color('info')
                                             ->label(__('Locality')),
 
-
                                         TextEntry::make('Job.nameJs')
                                             ->visible(function (Model $record){
                                                 return $record->job_id;

@@ -39,7 +39,7 @@ class VisitorsCountryWidget extends TableWidget
             ->query(fn (): Builder => Visitor::query()
             ->selectRaw('countryName,count(*) as count')
             ->groupby('countryName')
-            ->whereBetween('created_at', [$this->date1,$this->date2])
+            ->where('created_at', today())
             )
             ->columns([
                 TextColumn::make('countryName'),

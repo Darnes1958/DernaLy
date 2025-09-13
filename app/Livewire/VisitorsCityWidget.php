@@ -27,11 +27,12 @@ class VisitorsCityWidget extends TableWidget
         return uniqid();
     }
 
-    #[On('take_dates')]
-    public function take_dates($date1,$date2)
+    #[On('take_date1')]
+    public function take_date1($date1)
     {
+        info('yes');
         $this->date1=$date1;
-        $this->date2=$date2;
+
     }
     public function table(Table $table): Table
     {
@@ -40,7 +41,7 @@ class VisitorsCityWidget extends TableWidget
             ->selectRaw('cityName,count(*) as count')
             ->groupby('cityName')
             ->where('countryName','Libya')
-            ->whereBetween('created_at', [$this->date1,$this->date2])
+            ->where('created_at', today())
             )
             ->columns([
                 TextColumn::make('cityName'),
