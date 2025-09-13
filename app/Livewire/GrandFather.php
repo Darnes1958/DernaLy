@@ -34,7 +34,7 @@ class GrandFather extends BaseWidget
       }
       )
       ->queryStringIdentifier('grand')
-      ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('the largest families').'</div>'))
+      ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('لإhe largest families').'</div>'))
       ->description(__('Click on the name from the list below to view children and grandchildren'))
       ->striped()
       ->columns([

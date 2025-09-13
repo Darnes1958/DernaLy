@@ -18,6 +18,7 @@ class Guests extends Page
     protected  string $view = 'filament.app.pages.guests';
 
     protected ?string $heading='';
+    protected static ?int $navigationSort=10;
     public static function getNavigationLabel(): string
     {
         return __('Guests');

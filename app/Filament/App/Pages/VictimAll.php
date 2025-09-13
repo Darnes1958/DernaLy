@@ -60,6 +60,7 @@ class VictimAll extends Page implements HasForms,HasTable
 {
     use PublicTrait;
 
+
     use InteractsWithForms,InteractsWithTable;
     protected string $view = 'filament.app.pages.victim-all';
 
@@ -201,8 +202,7 @@ class VictimAll extends Page implements HasForms,HasTable
                     ))
                     ->searchable(),
                 TextColumn::make('year')
-                    ->label('Birth Date')
-                ,
+                    ->label('Birth Date'),
                 TextColumn::make('Familyshow.nameJs')
                     ->label('Family')
                     ->sortable()
@@ -243,7 +243,7 @@ class VictimAll extends Page implements HasForms,HasTable
             ])
             ->recordActions([
                 Action::make('View Information')
-                    ->iconButton()
+                    ->label(__('View Card'))
                     ->modalHeading('')
                     ->modalWidth(Width::SevenExtraLarge)
                     ->icon('heroicon-s-eye')
@@ -285,7 +285,7 @@ class VictimAll extends Page implements HasForms,HasTable
 
                                             ->columnSpanFull(),
 
-                                        TextEntry::make('wife.FullName')
+                                        TextEntry::make('wife.FullNameJs')
                                             ->visible(function (Victim $record){
                                                 return $record->wife_id;
                                             })
@@ -294,7 +294,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->size(TextSize::Large)
                                             ->separator(',')
                                             ->columnSpanFull(),
-                                        TextEntry::make('wife2.FullName')
+                                        TextEntry::make('wife2.FullNameJs')
                                             ->visible(function (Victim $record){
                                                 return $record->wife2_id;
                                             })
@@ -312,9 +312,19 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->columnSpanFull(),
 
                                         TextEntry::make('hisSons.Name1Js')
+                                            ->state(function (Victim $record){
+                                                $wname='';$i=0;
+                                                if ($record->hisSons())
+                                                foreach ($record->hisSons as $son ) if (++$i==1) $wname=$son->Name1Js ;
+                                                    else $wname =$wname.' , '.$son->Name1Js;
+                                                return $wname;
+                                            })
+
                                             ->visible(function (Victim $record){
                                                 return $record->is_father;
                                             })
+                                            ->badge()
+                                            ->separator(',')
                                             ->label(__('his sons'))
                                             ->color(function( )  {
                                                 self::$ser++;
@@ -331,12 +341,32 @@ class VictimAll extends Page implements HasForms,HasTable
                                                 return $c;
 
                                             })
-                                            ->badge()
-                                            ->separator(',')
                                             ->columnSpanFull(),
-                                        TextEntry::make('herSons.Name1')
+                                        TextEntry::make('herSons.Name1Js')
+                                            ->state(function (Victim $record){
+                                                $wname='';$i=0;
+                                                if ($record->herSons())
+                                                    foreach ($record->herSons as $son ) if (++$i==1) $wname=$son->Name1Js ;
+                                                    else $wname =$wname.' , '.$son->Name1Js;
+                                                return $wname;
+                                            })
                                             ->visible(function (Victim $record){
                                                 return $record->is_mother;
+                                            })
+                                            ->color(function( )  {
+                                                self::$ser++;
+
+                                                switch (self::$ser){
+                                                    case 1: $c='success';break;
+                                                    case 2: $c='info';break;
+                                                    case 3: $c='yellow';break;
+                                                    case 4: $c='rose';break;
+                                                    case 5: $c='blue';break;
+                                                    case 6: $c='Fuchsia';break;
+                                                    default: $c='primary';break;
+                                                }
+                                                return $c;
+
                                             })
                                             ->label(__('her sons'))
                                             ->badge()

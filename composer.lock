@@ -5839,16 +5839,16 @@
         },
         {
             "name": "spatie/laravel-pdf",
-            "version": "1.7.1",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-pdf.git",
-                "reference": "e85001a3e3941da752751b3d4c2b356c06aad248"
+                "reference": "4f3eb0dc94d0cfdd7295fd71b7946dc0eba664af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-pdf/zipball/e85001a3e3941da752751b3d4c2b356c06aad248",
-                "reference": "e85001a3e3941da752751b3d4c2b356c06aad248",
+                "url": "https://api.github.com/repos/spatie/laravel-pdf/zipball/4f3eb0dc94d0cfdd7295fd71b7946dc0eba664af",
+                "reference": "4f3eb0dc94d0cfdd7295fd71b7946dc0eba664af",
                 "shasum": ""
             },
             "require": {
@@ -5919,9 +5919,9 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-pdf/issues",
-                "source": "https://github.com/spatie/laravel-pdf/tree/1.7.1"
+                "source": "https://github.com/spatie/laravel-pdf/tree/1.8.0"
             },
-            "time": "2025-08-29T09:35:58+00:00"
+            "time": "2025-09-12T08:05:44+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
@@ -9738,16 +9738,16 @@
         },
         {
             "name": "google/gax",
-            "version": "v1.36.1",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/gax-php.git",
-                "reference": "afdac3bc38a3b17d70668115d7b1a97289ac4d72"
+                "reference": "05719d8a6a5a7233fc9aa41d9d6e5a873930c8ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/afdac3bc38a3b17d70668115d7b1a97289ac4d72",
-                "reference": "afdac3bc38a3b17d70668115d7b1a97289ac4d72",
+                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/05719d8a6a5a7233fc9aa41d9d6e5a873930c8ae",
+                "reference": "05719d8a6a5a7233fc9aa41d9d6e5a873930c8ae",
                 "shasum": ""
             },
             "require": {
@@ -9755,15 +9755,15 @@
                 "google/common-protos": "^4.4",
                 "google/grpc-gcp": "^0.4",
                 "google/longrunning": "~0.4",
-                "google/protobuf": "^v3.25.3||^4.26.1",
+                "google/protobuf": "^4.26.1",
                 "grpc/grpc": "^1.13",
                 "guzzlehttp/promises": "^2.0",
                 "guzzlehttp/psr7": "^2.0",
-                "php": "^8.0",
+                "php": "^8.1",
                 "ramsey/uuid": "^4.0"
             },
             "conflict": {
-                "ext-protobuf": "<3.7.0"
+                "ext-protobuf": "<4.7.0"
             },
             "require-dev": {
                 "phpspec/prophecy-phpunit": "^2.1",
@@ -9789,9 +9789,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/gax-php/issues",
-                "source": "https://github.com/googleapis/gax-php/tree/v1.36.1"
+                "source": "https://github.com/googleapis/gax-php/tree/v1.37.0"
             },
-            "time": "2025-05-20T19:50:43+00:00"
+            "time": "2025-09-13T16:22:17+00:00"
         },
         {
             "name": "google/grpc-gcp",
@@ -11893,16 +11893,16 @@
         },
         {
             "name": "sebastian/cli-parser",
-            "version": "4.0.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/cli-parser.git",
-                "reference": "6d584c727d9114bcdc14c86711cd1cad51778e7c"
+                "reference": "8fd93be538992d556aaa45c74570129448a42084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/6d584c727d9114bcdc14c86711cd1cad51778e7c",
-                "reference": "6d584c727d9114bcdc14c86711cd1cad51778e7c",
+                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/8fd93be538992d556aaa45c74570129448a42084",
+                "reference": "8fd93be538992d556aaa45c74570129448a42084",
                 "shasum": ""
             },
             "require": {
@@ -11914,7 +11914,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "4.0-dev"
+                    "dev-main": "4.1-dev"
                 }
             },
             "autoload": {
@@ -11938,15 +11938,27 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/cli-parser/issues",
                 "security": "https://github.com/sebastianbergmann/cli-parser/security/policy",
-                "source": "https://github.com/sebastianbergmann/cli-parser/tree/4.0.0"
+                "source": "https://github.com/sebastianbergmann/cli-parser/tree/4.1.0"
             },
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
                     "type": "github"
+                },
+                {
+                    "url": "https://liberapay.com/sebastianbergmann",
+                    "type": "liberapay"
+                },
+                {
+                    "url": "https://thanks.dev/u/gh/sebastianbergmann",
+                    "type": "thanks_dev"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/sebastian/cli-parser",
+                    "type": "tidelift"
                 }
             ],
-            "time": "2025-02-07T04:53:50+00:00"
+            "time": "2025-09-13T14:16:18+00:00"
         },
         {
             "name": "sebastian/comparator",
