@@ -9,6 +9,7 @@ use App\Models\Job;
 use App\Models\Road;
 use App\Models\Street;
 use App\Models\Talent;
+use App\Models\Tribe;
 use App\Models\Victim;
 use Filament\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -218,6 +219,24 @@ class FillTranslate extends Page implements HasForms
 
                             ];
                             $job->nameJs = $name;
+                            $job->save();
+                        }
+                    }),
+                Action::make('tribes')
+                    ->action(function (){
+
+                        $jobs= Tribe::query()->get() ;
+
+
+
+                        foreach ($jobs as $job) {
+
+                            $name = [
+                                'ar' => $job->TriName,
+                                'en' =>ucfirst(Str::ascii($job->TriName, 'ar'))
+
+                            ];
+                            $job->TriNameJs = $name;
                             $job->save();
                         }
                     }),
