@@ -24,7 +24,7 @@ class FillTranslate extends Page implements HasForms
     use InteractsWithForms;
     protected string $view = 'filament.pages.fill-translate';
 
-  //  protected static bool $shouldRegisterNavigation=false;
+    protected static bool $shouldRegisterNavigation=false;
 
     public function form(Schema $schema): Schema
     {
