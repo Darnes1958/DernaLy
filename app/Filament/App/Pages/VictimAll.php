@@ -396,7 +396,15 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->visible(function (Model $record){
                                                 return VicTalent::where('victim_id',$record->id)->exists() ;
                                             })
-
+                                            ->badge()
+                                            ->separator(',')
+                                            ->state(function (Victim $record){
+                                                $wname='';$i=0;
+                                                if ($record->VicTalent())
+                                                    foreach ($record->Victalent as $talent ) if (++$i==1) $wname=$talent->Talent->nameJs ;
+                                                    else $wname =$wname.' , '.$talent->Talent->nameJs;
+                                                return $wname;
+                                            })
                                             ->color('info')
                                             ->label('المواهب'),
                                         TextEntry::make('notesJs')
