@@ -411,6 +411,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->visible(function (Model $record){
                                                 return $record->notesJs;
                                             })
+                                            ->columnSpanFull()
                                             ->label('')
 
                                     ])
