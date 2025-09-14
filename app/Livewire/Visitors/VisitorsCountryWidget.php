@@ -66,7 +66,9 @@ class VisitorsCountryWidget extends TableWidget
                 Action::make('Today')
                     ->dispatch('take_dates',['date1'=>today(),'date2'=>today()]),
                 Action::make('Yesterday')
-                    ->dispatch('take_dates',['date1'=> Carbon::yesterday(),'date2'=>Carbon::yesterday()])
+                    ->dispatch('take_dates',['date1'=> Carbon::yesterday(),'date2'=>Carbon::yesterday()]),
+                 Action::make('Yesterday Before')
+                     ->dispatch('take_dates',['date1'=> Carbon::today()->subDay(2),'date2'=>Carbon::today()->subDay(2)]),
 
             ])
             ->recordActions([
