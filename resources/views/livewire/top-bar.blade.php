@@ -8,12 +8,11 @@
         @endif
 
     {{$this->form}}
-
+   @if(\Illuminate\Support\Facades\Auth::guest())
            <div>
                {{$this->contactus}}
                <x-filament-actions::modals />
            </div>
-
-
+    @endif
 
 </div>

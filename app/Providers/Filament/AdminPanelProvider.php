@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->resourceEditPageRedirect('index')
             ->darkMode(false)
             ->breadcrumbs(false)
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->sidebarFullyCollapsibleOnDesktop()
 
 

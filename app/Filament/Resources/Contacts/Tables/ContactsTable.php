@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,8 +21,12 @@ class ContactsTable
                 TextColumn::make('tel')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->numeric()
-                    ->sortable(),
+                 ->action(function ($record,$state){
+                     $record->status=!$state->value;
+                     $record->save();
+                 })
+                    ,
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -31,6 +36,8 @@ class ContactsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->recordUrl(false)
+            ->defaultSort('created_at','desc')
             ->filters([
                 //
             ])

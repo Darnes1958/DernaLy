@@ -5,12 +5,14 @@ namespace App\Filament\Pages;
 use App\Livewire\Visitors\VisitorsCityWidget;
 use App\Livewire\Visitors\VisitorsCountryWidget;
 use App\Models\Visitor;
+use BackedEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -23,6 +25,8 @@ class ShowVisitor extends Page implements HasTable,HasForms
 {
     use InteractsWithTable,InteractsWithForms;
     protected string $view = 'filament.pages.show-visitor';
+    protected static string | BackedEnum | null $navigationIcon=Heroicon::User;
+    protected static ?string $navigationLabel='Visitors';
     protected ?string $heading='';
 
     public  $date1;
