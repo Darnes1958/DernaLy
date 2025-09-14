@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Visitors;
 
 use App\Models\Visitor;
+use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Tables\Columns\TextColumn;
@@ -27,11 +28,12 @@ class VisitorsCityWidget extends TableWidget
         return uniqid();
     }
 
-    #[On('take_date1')]
-    public function take_date1($date1)
+    #[On('take_dates')]
+    public function take_date($date1,$date2)
     {
-        info('yes');
+
         $this->date1=$date1;
+        $this->date2=$date2;
 
     }
     public function table(Table $table): Table
@@ -41,18 +43,23 @@ class VisitorsCityWidget extends TableWidget
             ->selectRaw('cityName,count(*) as count')
             ->groupby('cityName')
             ->where('countryName','Libya')
-            ->where('created_at', today())
+                ->whereDate('created_at','>=',$this->date1)
+                ->whereDate('created_at','<=',$this->date2)
             )
             ->columns([
                 TextColumn::make('cityName'),
                 TextColumn::make('count')
-                ->summarize(Sum::make())
+                ->summarize(Sum::make()->label(''))
             ])
             ->heading(function (){
-                if ($this->date1==$this->date2 && $this->date1==today()) return today();
-                return 'between '.$this->date1.' - '.$this->date2;
+                $d1=Carbon::parse($this->date1);
+                $d2=Carbon::parse($this->date2);
+                if ($this->date1==$this->date2 ) return $d1->format('Y-m-d');
+                ;
+                return 'between '.$d1->format('Y-m-d').' - '.$d2->format('Y-m-d');
             })
-            ->defaultSort('cityName')
+            ->defaultPaginationPageOption(5)
+            ->defaultSort('count','desc')
             ->defaultKeySort(false)
             ->filters([
                 //

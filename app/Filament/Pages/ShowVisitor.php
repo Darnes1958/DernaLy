@@ -2,10 +2,11 @@
 
 namespace App\Filament\Pages;
 
-use App\Livewire\VisitorsCityWidget;
-use App\Livewire\VisitorsCountryWidget;
+use App\Livewire\Visitors\VisitorsCityWidget;
+use App\Livewire\Visitors\VisitorsCountryWidget;
 use App\Models\Visitor;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
@@ -13,12 +14,16 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ShowVisitor extends Page implements HasTable,HasForms
 {
     use InteractsWithTable,InteractsWithForms;
     protected string $view = 'filament.pages.show-visitor';
+    protected ?string $heading='';
 
     public  $date1;
     public $date2;
@@ -42,11 +47,13 @@ public function form(Schema $schema): Schema
     return $schema
         ->components([
            DatePicker::make('date1')
+           ->live()
            ->afterStateUpdated(function ($state) {
                $this->date1=$state;
-               $this->dispatch('take_date1',date1:$this->date1);
+               $this->dispatch('take_dates',date1:$this->date1,date2:$this->date2);
            }),
            DatePicker::make('date2')
+               ->live()
                ->afterStateUpdated(function ($state) {
                    $this->date2=$state;
                    $this->dispatch('take_dates',date1:$this->date1,date2:$this->date2);
@@ -64,7 +71,9 @@ public function form(Schema $schema): Schema
             ->columns([
                 TextColumn::make('ip'),
                 TextColumn::make('user_agent')
-                    ->limit(50, end: ' (more)'),
+                    ->wrap()
+                    ->width(500),
+
 
                 TextColumn::make('browser'),
                 TextColumn::make('platform'),
@@ -72,7 +81,28 @@ public function form(Schema $schema): Schema
                 TextColumn::make('countryName')->searchable()->sortable(),
                 TextColumn::make('cityName')->searchable()->sortable(),
                 TextColumn::make('created_at'),
+            ])
+            ->filters([
+              SelectFilter::make('cityName')
+               ->options(Visitor::query()
+                   ->distinct('cityName')
+                   ->where('cityName','!=',null)
+                   ->pluck('cityName','cityName')
+
+               )
+               ->searchable()
+               ->attribute('cityName')
+               ->preload(),
+              SelectFilter::make('countryName')
+                    ->options(Visitor::query()->distinct('countryName')
+                        ->where('countryName','!=',null)
+                        ->pluck('countryName','countryName'))
+                    ->searchable()
+                    ->preload(),
+
+
             ]);
+
     }
 }
 

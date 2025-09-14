@@ -29,6 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->resourceEditPageRedirect('index')
             ->darkMode(false)
             ->breadcrumbs(false)
+            ->sidebarFullyCollapsibleOnDesktop()
+
+
             ->maxContentWidth('Full')
             ->login()
 

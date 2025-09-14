@@ -238,7 +238,7 @@ class VictimAll extends Page implements HasForms,HasTable
                     ->stacked()
                     ->limit(3)
 
-                    ->label('')
+                    ->label(' ')
                     ->circular(),
             ])
             ->recordActions([
@@ -265,7 +265,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->visible(function (Victim $record){return $record->year!=null;})
                                             ->inlineLabel()
                                             ->color('rose')
-                                            ->label(new HtmlString('<span style="color: yellow">'.__('year').'</span>')),
+                                            ->label(__('year')),
                                         TextEntry::make('hisFather.FullName')
                                             ->visible(function (Victim $record){
                                                 return $record->father_id;
@@ -380,7 +380,7 @@ class VictimAll extends Page implements HasForms,HasTable
                                             ->label('القبيلة'),
                                         TextEntry::make('Street.StrNameJs')
                                             ->color('info')
-                                            ->label(__('address')),
+                                            ->label(__('Address')),
                                         TextEntry::make('Street.Area.AreaNameJs')
                                             ->color('info')
                                             ->label(__('Locality')),
@@ -418,10 +418,8 @@ class VictimAll extends Page implements HasForms,HasTable
                                     ->columnSpan(2),
 
                                 ImageEntry::make('image2')
-                                    ->label('')
-
                                     ->stacked()
-                                    ->label('')
+                                    ->hiddenLabel()
                                     ->height(500)
                                     ->columnSpan(2)
 
