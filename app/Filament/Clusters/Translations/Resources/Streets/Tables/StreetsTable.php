@@ -7,6 +7,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -42,11 +43,12 @@ class StreetsTable
                 TextColumn::make('Area.AreaName')
                     ->numeric()
                     ->sortable(),
-                IconColumn::make('building')
-                    ->boolean(),
+
                 TextColumn::make('Road.name')
                     ->numeric()
                     ->sortable(),
+                ImageColumn::make('image'),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
