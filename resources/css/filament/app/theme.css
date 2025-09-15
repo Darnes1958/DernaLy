@@ -62,6 +62,9 @@
 .fi-sidebar-item-label {
     @apply text-lg;
 }
+.fi-sidebar-group-label {
+    @apply text-lg;
+}
 
 .fi-topbar {
     @apply amber50;

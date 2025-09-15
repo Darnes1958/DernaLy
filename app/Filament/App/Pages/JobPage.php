@@ -16,7 +16,11 @@ class JobPage extends Page
 
     protected  string $view = 'filament.app.pages.job-page';
 
-    protected static ?int $navigationSort=9;
+    protected static ?int $navigationSort=2;
+    public static function getNavigationGroup(): string|\UnitEnum|null
+    {
+        return __('Jobs and Talents');
+    }
     protected ?string $heading='';
     public static function getNavigationLabel(): string
     {

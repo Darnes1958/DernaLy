@@ -25,7 +25,7 @@ use Livewire\Attributes\On;
 class StreetWidget extends BaseWidget
 {
 
-  protected int | string | array $columnSpan=1;
+  protected int | string | array $columnSpan=2;
   protected static ?int $sort=3;
 
   public $area_id=null;
@@ -72,7 +72,15 @@ class StreetWidget extends BaseWidget
           )
             ->extraAttributes(['class' => 'table_head_top_amber'])
             ->queryStringIdentifier('street')
-          ->heading(function () {return new HtmlString('<div class="text-primary-900 text-lg ">'.$this->pre.'</div>');} )
+           ->heading(function () {return new HtmlString(
+               '<div class="text-primary-900 text-lg ">'.$this->pre.'</div>'
+           );} )
+            ->description(function (){
+                if ($this->road_id || $this->area_id)
+                 return __('Click here to view larger images');
+                else return null;
+            })
+
           ->defaultPaginationPageOption(16)
            ->paginationPageOptions([5,10,16,25,50,100])
             ->emptyStateHeading(__('Choose from the list of localities and roads'))
@@ -99,7 +107,7 @@ class StreetWidget extends BaseWidget
                           ->label(' ')
                           ->modalSubmitAction(false)
                           ->modalCancelActionLabel('عودة')
-                          ->infolist([
+                          ->schema([
                               ImageEntry::make('image')
                                   ->label('')
                                   ->stacked()
@@ -107,7 +115,7 @@ class StreetWidget extends BaseWidget
                                   ->height(500)
                           ])
                   )
-                  ->limit(1)
+                  ->circular()
 
 
 

@@ -10,6 +10,7 @@ class Street extends Model
 {
     use HasTranslations;
     public array $translatable = ['StrNameJs',];
+    protected $casts=['image'=>'array'];
 
 
     public function Area(){

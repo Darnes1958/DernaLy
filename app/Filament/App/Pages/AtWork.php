@@ -7,6 +7,7 @@ use App\Livewire\WorkWidget;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class AtWork extends Page
 {
@@ -15,7 +16,12 @@ class AtWork extends Page
     protected  string $view = 'filament.app.pages.at-work';
     protected ?string $heading='';
 
-    protected static ?int $navigationSort=8;
+    protected static ?int $navigationSort=2;
+   public static function getNavigationGroup(): string|UnitEnum|null
+   {
+       return __('Guests, Rescuers and on the Job');
+   }
+
     public static function getNavigationLabel(): string
     {
         return __('During work');

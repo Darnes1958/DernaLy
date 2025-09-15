@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class Madany extends Page
 {
@@ -30,7 +31,12 @@ class Madany extends Page
     protected  string $view = 'filament.app.pages.madany';
     protected static string | BackedEnum | null $navigationIcon=Heroicon::PaintBrush;
 
-    protected static ?int $navigationSort=9;
+    protected static ?int $navigationSort=1;
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return __('Jobs and Talents');
+    }
+
     protected ?string $heading='';
 
     public function mount(): void

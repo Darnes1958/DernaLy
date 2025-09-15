@@ -17,10 +17,11 @@ class BigestGrand extends Page
     protected  string $view = 'filament.app.pages.bigest-grand';
     protected ?string $heading='';
 
-public static function getNavigationSort(): ?int
-{
-    return 10;
-}
+    protected static ?int $navigationSort=3;
+    public static function getNavigationGroup(): string|\UnitEnum|null
+    {
+        return __('Statistics and Charts');
+    }
 
     public static function getNavigationLabel(): string
     {
@@ -33,7 +34,7 @@ public static function getNavigationSort(): ?int
     }
 
 
-    protected static ?int $navigationSort=6;
+
     public function getFooterWidgetsColumns(): int |  array
     {
         return 5;

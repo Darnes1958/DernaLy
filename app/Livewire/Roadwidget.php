@@ -38,6 +38,9 @@ class Roadwidget extends BaseWidget
             ->extraAttributes(['class' => 'table_head_top_amber'])
             ->queryStringIdentifier('roads')
             ->heading(new HtmlString('<div class="text-primary-900 text-lg">'.__('Number of victims by Roads').'</div>'))
+            ->description(function (){
+                return __('Click here to view details');
+            })
             ->defaultPaginationPageOption(6)
             ->paginationPageOptions([6,10,16,25,50,100])
 

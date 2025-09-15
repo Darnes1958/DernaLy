@@ -27,7 +27,7 @@ class CountryPage extends Page implements HasTable
 
     protected  string $view = 'filament.app.pages.country-page';
     protected ?string $heading='';
-    protected static ?int $navigationSort=9;
+    protected static ?int $navigationSort=5;
 
 
     public static function getNavigationLabel(): string

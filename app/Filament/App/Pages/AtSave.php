@@ -9,6 +9,7 @@ use App\Livewire\SaveWidget;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class AtSave extends Page
 {
@@ -17,7 +18,16 @@ class AtSave extends Page
     protected  string $view = 'filament.app.pages.at-save';
     protected ?string $heading='';
 
-    protected static ?int $navigationSort=7;
+    protected static ?int $navigationSort=3;
+
+
+    /**
+     * @return string|UnitEnum|null
+     */
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('Guests, Rescuers and on the Job');
+    }
     public static function getNavigationLabel(): string
     {
         return __('Rescuers');

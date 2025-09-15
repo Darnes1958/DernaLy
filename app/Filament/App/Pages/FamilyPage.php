@@ -29,7 +29,12 @@ protected static string | BackedEnum | null $navigationIcon=Heroicon::UserGroup;
         else app()->setLocale('ar');
     }
 
-    protected static ?int $navigationSort=4;
+    protected static ?int $navigationSort=2;
+    public static function getNavigationGroup(): string|\UnitEnum|null
+    {
+        return __('Statistics and Charts');
+    }
+
     public $showFamilyWidget=false;
 
 

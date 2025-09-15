@@ -3,13 +3,14 @@
 namespace App\Filament\App\Pages;
 
 use App\Filament\App\Clusters\Statistics\StatisticsCluster;
-use App\Filament\Widgets\MaleFemale;
+
 use App\Livewire\CusCountWidget;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
+use UnitEnum;
 
 class Counts extends Page
 {
@@ -22,6 +23,8 @@ class Counts extends Page
     protected static ?string $cluster =StatisticsCluster::class;
 
     protected static ?int $navigationSort=1;
+
+
     public static function getNavigationLabel(): string
     {
         return __('Statistics of Numbers');

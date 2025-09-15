@@ -9,6 +9,7 @@ use App\Livewire\GuestsWidget;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class Guests extends Page
 {
@@ -18,7 +19,14 @@ class Guests extends Page
     protected  string $view = 'filament.app.pages.guests';
 
     protected ?string $heading='';
-    protected static ?int $navigationSort=10;
+
+    protected static ?int $navigationSort=1;
+
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return __('Guests, Rescuers and on the Job');
+    }
+
     public static function getNavigationLabel(): string
     {
         return __('Guests');

@@ -28,6 +28,9 @@ class AreaWidget extends BaseWidget
             ->extraAttributes(['class' => 'table_head_top_amber'])
           ->queryStringIdentifier('area')
           ->heading(new HtmlString('<div class="text-primary-900 text-lg">'.__('Number of victims by Locality').'</div>'))
+          ->description(function (){
+              return __('Click here to view details');
+          })
           ->paginated(false)
 
 

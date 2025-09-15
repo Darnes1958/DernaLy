@@ -35,7 +35,7 @@ class Places extends Page implements HasForms
     protected static ?int $navigationSort=5;
     public function getFooterWidgetsColumns(): int |  array
     {
-        return 2;
+        return 3;
     }
     public $show='area';
     public $onlyLibyan=false;

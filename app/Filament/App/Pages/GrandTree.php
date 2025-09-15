@@ -27,7 +27,11 @@ class GrandTree extends Page
     }
 
 
-    protected static ?int $navigationSort=6;
+    protected static ?int $navigationSort=4;
+    public static function getNavigationGroup(): string|\UnitEnum|null
+    {
+        return __('Statistics and Charts');
+    }
 
     public function getFooterWidgetsColumns(): int | array
     {
