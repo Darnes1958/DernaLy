@@ -30,7 +30,7 @@ class StreetForm
                     ->searchable()
                     ->required()
                     ->preload(),
-                FileUpload::make('image')->multiple()
+                FileUpload::make('image')->multiple()->imageEditor()
                     ,
             ]);
     }
