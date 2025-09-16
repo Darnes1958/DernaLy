@@ -21,25 +21,15 @@ class AljabelsTable
                 TextColumn::make('Familyshow.name')
                     ->sortable(),
                 TextColumn::make('Place.name')
-                    ->numeric()
+
                     ->sortable(),
                 IconColumn::make('sex')
                     ->boolean(),
-                TextColumn::make('year')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('husband.FullName')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('wife.FullName')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('hisMother.FullName')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('hisFather.FullName')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('year'),
+                TextColumn::make('husband.FullName'),
+                TextColumn::make('wife.FullName'),
+                TextColumn::make('hisMother.FullName'),
+                TextColumn::make('hisFather.FullName'),
                 ImageColumn::make('image')
                  ->circular(),
                 TextColumn::make('created_at')
@@ -53,6 +43,7 @@ class AljabelsTable
 
 
             ])
+
             ->filters([
                 //
             ])

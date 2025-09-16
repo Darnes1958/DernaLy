@@ -215,6 +215,7 @@ class AljabelForm
                     ->default(function (){
                         return Aljabel::max('masterKey')+1;
                     }),
-            ]);
+            ])
+            ->columns(4);
     }
 }
