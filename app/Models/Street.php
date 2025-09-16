@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
@@ -12,7 +11,10 @@ class Street extends Model
     public array $translatable = ['StrNameJs',];
     protected $casts=['image'=>'array'];
 
-
+    public function Aljabel()
+    {
+        return $this->hasMany(Aljabel::class);
+    }
     public function Area(){
       return $this->belongsTo(Area::class);
     }

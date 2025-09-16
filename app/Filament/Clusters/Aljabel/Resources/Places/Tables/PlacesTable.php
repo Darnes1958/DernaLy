@@ -1,35 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\Contacts\Tables;
+namespace App\Filament\Clusters\Aljabel\Resources\Places\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ContactsTable
+class PlacesTable
 {
-
     public static function configure(Table $table): Table
     {
         return $table
-
-
             ->columns([
-                TextColumn::make('message')
+                TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('tel')
-                    ->searchable(),
-                TextColumn::make('status')
-                 ->action(function ($record,$state){
-                     $record->status=!$state->value;
-                     $record->save();
-                 })
-                    ,
-
+                TextColumn::make('City.name')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -39,17 +29,17 @@ class ContactsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->recordUrl(false)
-            ->defaultSort('created_at','desc')
             ->filters([
                 //
             ])
             ->recordActions([
                 ViewAction::make(),
-
+                EditAction::make(),
             ])
             ->toolbarActions([
-               //
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
             ]);
     }
 }
