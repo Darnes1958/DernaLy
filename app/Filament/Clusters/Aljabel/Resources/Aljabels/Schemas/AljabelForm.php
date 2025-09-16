@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Aljabel\Resources\Aljabels\Schemas;
 
 use App\Models\Aljabel;
+use App\Models\BigFamily;
 use App\Models\Victim;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
@@ -35,6 +36,22 @@ class AljabelForm
                     ->label('العائلة')
                     ->relationship('Familyshow','name')
                     ->searchable()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required(),
+
+                        Select::make('bigfamily_id')
+                            ->searchable()
+                            ->required()
+                            ->options(BigFamily::all()->pluck('name','id'))
+
+                            ->preload()
+                            ->label('القبيلة'),
+
+                        Hidden::make('nation')->default('ليبيا'),
+                        Hidden::make('country_id')
+                            ->default(1)
+                    ])
                     ->live()
                     ->preload()
                     ->required(),

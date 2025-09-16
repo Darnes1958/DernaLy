@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Familyshows\Schemas;
 
+use App\Models\BigFamily;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -14,14 +17,19 @@ class FamilyshowForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                Textarea::make('nameJs')
-                    ->columnSpanFull(),
-                TextInput::make('bigfamily_id')
-                    ->numeric(),
-                TextInput::make('nation'),
-                TextInput::make('country_id')
-                    ->numeric(),
-                TextInput::make('who'),
+
+                Select::make('bigfamily_id')
+                    ->searchable()
+                    ->required()
+                    ->options(BigFamily::all()->pluck('name','id'))
+
+                    ->preload()
+                    ->label('القبيلة'),
+
+                Hidden::make('nation')->default('ليبيا'),
+                Hidden::make('country_id')
+                    ->default(1)
+
             ]);
     }
 }
