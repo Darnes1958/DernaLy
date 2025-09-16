@@ -17,7 +17,7 @@ class AljabelsTable
     {
         return $table
             ->columns([
-                TextColumn::make('FullName'),
+                TextColumn::make('FullName')->searchable(),
                 TextColumn::make('Familyshow.name')
                     ->sortable(),
                 TextColumn::make('Place.name')
@@ -43,6 +43,7 @@ class AljabelsTable
 
 
             ])
+            ->defaultSort('created_at','desc')
 
             ->filters([
                 //
