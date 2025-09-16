@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Familyshows\Schemas;
 
 use App\Models\BigFamily;
+use App\Models\Tarkeba;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -31,7 +32,8 @@ class FamilyshowForm
                         Select::make('tarkeba_id')
                             ->searchable()
                             ->preload()
-                            ->relationship('Tarkeba','name')
+                            ->options(Tarkeba::all()->pluck('name','id'))
+
                             ->createOptionForm([
                                 TextInput::make('name')
                                     ->required()
