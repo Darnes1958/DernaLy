@@ -23,6 +23,9 @@ class FamilyshowForm
                     ->searchable()
                     ->required()
                     ->options(BigFamily::all()->pluck('name','id'))
+                    ->createOptionUsing(function (array $data): int {
+                        return BigFamily::create($data)->getKey();
+                    })
                     ->preload()
                     ->createOptionForm([
                         TextInput::make('name')
