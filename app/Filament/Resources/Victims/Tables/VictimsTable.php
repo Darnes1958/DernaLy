@@ -39,7 +39,7 @@ class VictimsTable
                     ->stacked()
                     ->circular(),
             ])
-            ->defaultSort('created_at','desc')
+            ->defaultSort('updated_at','desc')
             ->filters([
                 //
             ])

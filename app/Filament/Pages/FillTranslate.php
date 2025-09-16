@@ -31,6 +31,11 @@ class FillTranslate extends Page implements HasForms
     {
         return $schema
             ->components([
+                Action::make('test')
+                 ->action(function (){
+                     $test=Victim::where('Name1Js->en','hamad')->get();
+                     info($test->first()->FullName);
+                 }),
                 Action::make('trans')
                     ->action(function (){
                         $trans = Transliterator::create('Arabic-Latin; NFD; [:Nonspacing Mark:] Remove; NFC');

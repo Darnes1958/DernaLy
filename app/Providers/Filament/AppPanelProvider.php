@@ -28,6 +28,8 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->font('Amiri')
             ->darkMode(false)
+            ->favicon(asset('images/bysa.png'))
+            ->brandLogo(asset('images/bysa.png'))
             ->brandName(__('City memory'))
             ->plugin(SpatieTranslatablePlugin ::make()
                 ->defaultLocales(['ar', 'en']))

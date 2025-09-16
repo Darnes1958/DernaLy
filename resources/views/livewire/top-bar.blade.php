@@ -1,5 +1,6 @@
 <div class="flex space-x-2">
 
+
         @if($current=='ar')
             <x-flag-country-ly class="w-8 h-8 "/>
 
