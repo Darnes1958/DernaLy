@@ -22,8 +22,32 @@ class FamilyshowForm
                     ->searchable()
                     ->required()
                     ->options(BigFamily::all()->pluck('name','id'))
-
                     ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->label('اسم العائلة'),
+                        Select::make('tarkeba_id')
+                            ->searchable()
+                            ->preload()
+                            ->relationship('Tarkeba','name')
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                                    ->label('اسم التركيبة الاجتماعية')
+                                    ->maxLength(255)
+                                    ->required(),
+                            ])
+                            ->editOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                                    ->label('اسم التركيبة الاجتماعية ')
+                                    ->maxLength(255)
+                                    ->required(),
+                            ])
+                            ->label('التركيبة الاجتماعية'),
+                    ])
                     ->label('القبيلة'),
 
                 Hidden::make('nation')->default('ليبيا'),
