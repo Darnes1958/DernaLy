@@ -24,12 +24,12 @@ class AljabelForm
     {
         return $schema
             ->components([
-                TextInput::make('Name1')
+                KeyValue::make('Name1')
                     ->required(),
-                TextInput::make('Name2')
+                KeyValue::make('Name2')
                     ->required(),
-                TextInput::make('Name3'),
-                TextInput::make('Name4') ,
+                KeyValue::make('Name3'),
+                KeyValue::make('Name4') ,
                 TextInput::make('otherName'),
                 Hidden::make('FullName'),
                 Select::make('familyshow_id')
