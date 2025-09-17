@@ -174,13 +174,11 @@ class AljabelForm
                 Select::make('mother_id')
                     ->label('والدته')
                     ->relationship('hisMother','FullName', fn (Builder $query) => $query
-                        ->where('sex',0))
+                        ->where('sex',1))
                     ->searchable()
                     ->reactive()
                     ->preload(),
-                Toggle::make('has_more')
-                    ->label('لديها اخوة غير أشقاء')
-                    ->visible(fn(Get $get)=>$get('is_mother')==1),
+
 
                 Select::make('grandfather_id')
                     ->label('جده')
