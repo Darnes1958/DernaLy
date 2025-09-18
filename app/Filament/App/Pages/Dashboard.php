@@ -48,13 +48,13 @@ class Dashboard extends Page   implements HasActions, HasForms
                        ->color('gray')
                         ->icon(Heroicon::MagnifyingGlassCircle)
                         ->extraAttributes(['class'=> 'ml-2 text-green-700',])
-                        ->label('ليبيين')
+                        ->label(__('Libyans'))
                         ->url(VictimAll::getUrl()),
                     Action::make('forein')
                         ->color('gray')
                         ->extraAttributes(['class'=> ' text-amber-700',])
                         ->icon(Heroicon::MagnifyingGlassCircle)
-                        ->label('اجانب')
+                        ->label(__('Foreigners'))
                         ->url(VictimAllForeign::getUrl()),
                 ])
                     ->buttonGroup(),
@@ -63,13 +63,13 @@ class Dashboard extends Page   implements HasActions, HasForms
                         ->color('gray')
                         ->icon(Heroicon::NumberedList)
                         ->extraAttributes(['class'=> 'ml-2 text-green-700',])
-                        ->label('إحصائية')
+                        ->label(__('Statistics'))
                         ->url(Counts::getUrl()),
                     Action::make('country')
                         ->color('gray')
                         ->extraAttributes(['class'=> ' text-amber-700',])
                         ->icon(Heroicon::GlobeAlt)
-                        ->label('دول')
+                        ->label(__('Countries'))
                         ->url(CountryPage::getUrl()),
                 ])
                     ->buttonGroup(),
@@ -78,13 +78,13 @@ class Dashboard extends Page   implements HasActions, HasForms
                         ->color('gray')
                         ->icon(Heroicon::UserGroup)
                         ->extraAttributes(['class'=> 'ml-2 text-green-700',])
-                        ->label('عائلات')
+                        ->label(__('Families'))
                         ->url(FamilyPage::getUrl()),
                     Action::make('addresses')
                         ->color('gray')
                         ->extraAttributes(['class'=> ' text-amber-700',])
                         ->icon(Heroicon::BuildingOffice2)
-                        ->label('عناوين')
+                        ->label(__('Addresses'))
                         ->url(Places::getUrl()),
                 ])
                     ->buttonGroup(),

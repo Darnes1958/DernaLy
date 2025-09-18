@@ -1,9 +1,9 @@
 
 {
     "Dashboard": "لوحة التحكم",
-    "Jobs and Talents": "وظائف ومواهب ومجتمع",
-    "Statistics and Charts": "إحصائيات ورسوم بيانية",
-    "Guests, Rescuers and on the Job": "ضيوف ومنقذين وفالعمل",
+    "Jobs and Talents": "وظائف ومواهب",
+    "Statistics,Charts": "إحصائيات ورسوم",
+    "Guests, Rescuers..": "ضيوف ومنقذين ..",
     "Charts": "رسوم بيانية",
     "Comparison between the west and east of the valley": "مقارن بين غرب الوادي وشرقه",
     "Fathers and Mothers": "أباء و أمهات",
@@ -29,7 +29,8 @@
     "By gender": "حسب الجنس",
     "Derna Vally": "وادي درنه",
     "Elnaga Vally": "وادي الناقة",
-    "Statistics": "إحصائية بالأعداد",
+    "Statistics": "إحصائية",
+    "Countries": "دول",
     "West Vally": "غرب الوادي",
     "East Vally": "شرق الوادي",
     "Contact us": "اتصل بنا",
