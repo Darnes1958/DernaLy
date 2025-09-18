@@ -17,7 +17,7 @@
                         $this->bigest,
                         $this->tree,
                     ]"
-                                              label="{{__('Statistics and Charts')}}"
+                                              label="{{__('Statistics,Charts')}}"
                                               icon="heroicon-m-ellipsis-vertical"
                                               button="true"
                    />
@@ -30,7 +30,7 @@
                         $this->saver,
                         $this->work,
                     ]"
-                       label="{{__('Guests, Rescuers and on the Job')}}"
+                       label="{{__('Guests, Rescuers..')}}"
                        icon="heroicon-m-ellipsis-vertical"
                        button="true"
                    />
