@@ -1,4 +1,6 @@
+
 {
+    "Dashboard": "لوحة التحكم",
     "Jobs and Talents": "وظائف ومواهب",
     "Statistics and Charts": "إحصائيات ورسوم بيانية",
     "Guests, Rescuers and on the Job": "ضيوف ومنقذين وأثناء العمل",
@@ -11,7 +13,7 @@
     "Guests": "ضيوف",
     "View Card": "عرض بطاقة",
     "Jobs and careers": "وظائف ومهن",
-"During work": "اثناء العمل",
+    "During work": "اثناء العمل",
     "heroicon-o-arrow-long-left": "heroicon-o-arrow-long-right",
     "Paternal and Maternal Grandparents": "أجداد الأب والأم",
     "count by family": "العدد حسب العائلات",
