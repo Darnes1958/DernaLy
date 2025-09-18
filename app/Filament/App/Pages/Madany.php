@@ -25,9 +25,6 @@ use UnitEnum;
 class Madany extends Page
 {
 
-
-
-
     protected  string $view = 'filament.app.pages.madany';
     protected static string | BackedEnum | null $navigationIcon=Heroicon::PaintBrush;
 

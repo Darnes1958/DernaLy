@@ -44,15 +44,12 @@ class WorkWidget extends BaseWidget
                     ->sortable()
                     ->color('blue')
                     ->searchable()
-                    ->label('FullName')
                     ->formatStateUsing(fn (Victim $record): View => view(
                         'filament.app.pages.assist.data-with-images',
                         ['record' => $record],
                     )),
                 TextColumn::make('Street.StrNameJs')
-                    ->color('warning')
-                    ->sortable()
-                  ,
+                    ->color('warning'),
                 ImageColumn::make('image2')
                     ->height(160)
                     ->label(__('Image'))

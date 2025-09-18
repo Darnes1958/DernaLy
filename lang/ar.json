@@ -1,9 +1,9 @@
 
 {
     "Dashboard": "لوحة التحكم",
-    "Jobs and Talents": "وظائف ومواهب",
+    "Jobs and Talents": "وظائف ومواهب ومجتمع",
     "Statistics and Charts": "إحصائيات ورسوم بيانية",
-    "Guests, Rescuers and on the Job": "ضيوف ومنقذين وأثناء العمل",
+    "Guests, Rescuers and on the Job": "ضيوف ومنقذين وفالعمل",
     "Charts": "رسوم بيانية",
     "Comparison between the west and east of the valley": "مقارن بين غرب الوادي وشرقه",
     "Fathers and Mothers": "أباء و أمهات",
@@ -49,6 +49,7 @@
     "From 13 nationalities": "من 13 جنسية",
 
     "Full name js": "الإسم بالكامل",
+    "FullName": "الإسم بالكامل",
     "Number of victims : ": "عدد الضحايا : ",
 
     "Civil Society and Talents": "مجتمع مدني ومواهب",

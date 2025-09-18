@@ -35,7 +35,6 @@ class SaveWidget extends BaseWidget
                 TextColumn::make('FullNameJs')
                     ->sortable()
                     ->color('blue')
-                    ->label('FullName')
                     ->searchable()
                     ->formatStateUsing(fn (Victim $record): View => view(
                         'filament.app.pages.assist.data-with-images',
@@ -43,7 +42,7 @@ class SaveWidget extends BaseWidget
                     )),
                 TextColumn::make('notesJs')
                     ->color('warning')
-                    ->sortable(),
+                    ->label(''),
 
                 ImageColumn::make('image2')
                     ->height(160)

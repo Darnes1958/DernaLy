@@ -29,12 +29,13 @@ class GrandFather extends BaseWidget
   {
     return $table
       ->query(function () {
-        $data=Grand_count::query()->orderBy('thesum', 'desc')->where('thesum','>=',20);
+        $data=Grand_count::query()->orderBy('thesum', 'desc')
+            ->where('thesum','>=',20);
         return $data;
       }
       )
       ->queryStringIdentifier('grand')
-      ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('لإhe largest families').'</div>'))
+      ->heading(new HtmlString('<div class="text-primary-400 text-lg">'.__('The largest families').'</div>'))
       ->description(__('Click on the name from the list below to view children and grandchildren'))
       ->striped()
       ->columns([

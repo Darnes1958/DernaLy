@@ -39,16 +39,16 @@ class GuestsWidget extends BaseWidget
             ->columns([
                 TextColumn::make('FullNameJs')
                     ->sortable()
-                    ->label('FullName')
                     ->color('blue')
                     ->searchable(),
                 TextColumn::make('notesJs')
                     ->color('warning')
-                    ->sortable(),
+                    ->label(''),
+
 
                 ImageColumn::make('image2')
                     ->height(160)
-                    ->label('Image')
+                    ->label(__('Image'))
                     ->limit(1)
                     ->circular(),
 
