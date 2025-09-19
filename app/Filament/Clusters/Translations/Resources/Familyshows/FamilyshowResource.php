@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Familyshows;
+namespace App\Filament\Clusters\Translations\Resources\Familyshows;
 
-use App\Filament\Resources\Familyshows\Pages\CreateFamilyshow;
-use App\Filament\Resources\Familyshows\Pages\EditFamilyshow;
-use App\Filament\Resources\Familyshows\Pages\ListFamilyshows;
-use App\Filament\Resources\Familyshows\Schemas\FamilyshowForm;
-use App\Filament\Resources\Familyshows\Tables\FamilyshowsTable;
+use App\Filament\Clusters\Translations\Resources\Familyshows\Pages\CreateFamilyshow;
+use App\Filament\Clusters\Translations\Resources\Familyshows\Pages\EditFamilyshow;
+use App\Filament\Clusters\Translations\Resources\Familyshows\Pages\ListFamilyshows;
+use App\Filament\Clusters\Translations\Resources\Familyshows\Schemas\FamilyshowForm;
+use App\Filament\Clusters\Translations\Resources\Familyshows\Tables\FamilyshowsTable;
+use App\Filament\Clusters\Translations\TranslationsCluster;
 use App\Models\Familyshow;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -19,7 +20,9 @@ class FamilyshowResource extends Resource
     protected static ?string $model = Familyshow::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static ?string $navigationLabel='العائلات الكبري';
+    protected static ?string $navigationLabel='العائلات';
+    protected static ?string $cluster=TranslationsCluster::class;
+
 
     public static function form(Schema $schema): Schema
     {

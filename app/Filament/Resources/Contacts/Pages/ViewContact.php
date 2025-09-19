@@ -10,10 +10,5 @@ class ViewContact extends ViewRecord
 {
     protected static string $resource = ContactResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            EditAction::make(),
-        ];
-    }
+
 }

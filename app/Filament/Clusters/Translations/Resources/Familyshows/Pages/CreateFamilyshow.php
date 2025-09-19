@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Familyshows\Pages;
+namespace App\Filament\Clusters\Translations\Resources\Familyshows\Pages;
 
-use App\Filament\Resources\Familyshows\FamilyshowResource;
-use App\Models\Victim;
+use App\Filament\Clusters\Translations\Resources\Familyshows\FamilyshowResource;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Str;
 

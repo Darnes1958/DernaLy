@@ -14,7 +14,7 @@ class ContactInfolist
                 TextEntry::make('message'),
                 TextEntry::make('tel'),
                 TextEntry::make('status')
-                    ->numeric(),
+                    ,
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

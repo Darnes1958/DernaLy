@@ -20,7 +20,10 @@ class Familyshow extends Model
     public function Family(){
         return $this->hasMany(Familyshow::class);
     }
-    public function Big_family(){
+    public function bigfamily(){
         return $this->belongsTo(BigFamily::class);
+    }
+    public function Country(){
+        return $this->belongsTo(Country::class);
     }
 }

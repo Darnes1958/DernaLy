@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Familyshows\Schemas;
+namespace App\Filament\Clusters\Translations\Resources\Familyshows\Schemas;
 
 use App\Models\BigFamily;
 use App\Models\Tarkeba;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
 class FamilyshowForm

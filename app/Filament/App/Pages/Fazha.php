@@ -25,6 +25,7 @@ class Fazha extends Page implements HasSchemas
     protected string $view = 'filament.app.pages.fazha';
 
     protected ?string $heading='شهداء الفزعة - شباب بنغازي';
+
     protected static ?string $navigationLabel='شباب بنغازي';
     protected static string | UnitEnum | null $navigationGroup='شهداء الفزعة';
 

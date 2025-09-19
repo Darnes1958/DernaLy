@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Filament\Resources\Familyshows\Tables;
+namespace App\Filament\Clusters\Translations\Resources\Familyshows\Tables;
 
 use App\Models\Family;
 use App\Models\Familyshow;
 use App\Models\Victim;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Google\Cloud\Translate\V3\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class FamilyshowsTable
 {
@@ -20,9 +21,30 @@ class FamilyshowsTable
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name')
+                TextColumn::make('nameJs')
+                    ->color('info')
+                    ->description(function (Model $record){
+                        return $record->getTranslation('nameJs','en');
+                    })
+                    ->action(
+                        Action::make('Updname')
+                            ->fillForm(fn(Model $record): array=>[
+                                'nameAr'=>$record->nameJs,'nameEn'=>$record->getTranslation('nameJs','en'),
+                            ])
+                            ->schema([
+                                TextInput::make('nameAr')->required(),
+                                TextInput::make('nameEn')->required(),
+                            ])
+                            ->action(function (Model $record,array $data) {
+                                $rec=['ar'=>$data['nameAr'],'en'=>$data['nameEn']];
+                                $record->nameJs=$rec;
+                                $record->save();
+                            })
+                    )
                     ->searchable(),
-                TextColumn::make('BigFamily.name'),
+
+                TextColumn::make('bigfamily.name'),
+                TextColumn::make('bigfamily.Tarkeba.name'),
                 TextColumn::make('nation'),
 
                 TextColumn::make('Country.name'),
