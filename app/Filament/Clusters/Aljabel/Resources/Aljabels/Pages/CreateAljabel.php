@@ -13,7 +13,7 @@ class CreateAljabel extends CreateRecord
     {
 
 
-        $name =  $data['Name1'].' '.$data['Name2'].' '.$data['Name3'].' '.$data['Name4'];
+        $name =  $data['Name1']['ar'].' '.$data['Name2']['ar'].' '.$data['Name3']['ar'].' '.$data['Name4']['ar'];
 
         $data['FullName']=$name;
 

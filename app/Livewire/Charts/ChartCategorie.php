@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Charts;
 
-use App\Models\Categorie;
+use App\Models\Peroid;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -52,7 +52,7 @@ protected int | string | array $columnSpan=3;
       return 'bar';
   }
   private function getInfo(): array {
-    $res=Categorie::query()->get();
+    $res=Peroid::query()->get();
     $theLabels=$res->pluck('name');
     $theData=$res->pluck('count');
 

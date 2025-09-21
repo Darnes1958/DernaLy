@@ -2,3 +2,9 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+@source '../../../../app/Filament/Clusters/**/*';
+@source '../../../../resources/views/filament/clusters/**/*';
+
+@source '../../../../app/Livewire/**/*';
+@source '../../../../resources/views/livewire/**/*';
+

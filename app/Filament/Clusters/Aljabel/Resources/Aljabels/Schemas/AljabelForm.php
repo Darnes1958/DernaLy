@@ -25,11 +25,39 @@ class AljabelForm
         return $schema
             ->components([
                 KeyValue::make('Name1')
+                    ->keyLabel('اللغة')
+                    ->valueLabel('الاسم')
+                    ->deletable(false)
+                    ->addable(false)
+                    ->default([
+                        'ar'=>'',
+                    ])
                     ->required(),
                 KeyValue::make('Name2')
+                    ->keyLabel('اللغة')
+                    ->valueLabel('الاسم')
+                    ->deletable(false)
+                    ->addable(false)
+                    ->default([
+                        'ar'=>'',
+                    ])
                     ->required(),
-                KeyValue::make('Name3'),
-                KeyValue::make('Name4') ,
+                KeyValue::make('Name3')
+                    ->keyLabel('اللغة')
+                    ->valueLabel('الاسم')
+                    ->deletable(false)
+                    ->addable(false)
+                    ->default([
+                        'ar'=>'',
+                    ]),
+                KeyValue::make('Name4')
+                    ->keyLabel('اللغة')
+                    ->valueLabel('الاسم')
+                    ->deletable(false)
+                    ->addable(false)
+                    ->default([
+                    'ar'=>'',
+                ]),
                 TextInput::make('otherName'),
                 Hidden::make('FullName'),
                 Select::make('familyshow_id')
