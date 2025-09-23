@@ -2,6 +2,7 @@
 
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
 use App\Models\Post;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Infolists\Components\ImageEntry;
@@ -25,40 +26,25 @@ class PostInfolist
 
             ->components(fn($record) =>[
 
-                TextEntry::make('id')
-                    ->formatStateUsing(fn ($record): View => view(
-                        'filament.app.pages.assist.test',['record' => $record]
-                    )),
-                TextEntry::make('title')
-                ->belowContent([
-                        Text::make('إنها تجربة فريدة')
-                            ->weight(FontWeight::ExtraBold)
-                            ->fontFamily('Tajawal')
+                TextEntry::make('body')
+                    ->state(fn ($record): string => RichContentRenderer::make($record->body)
+                        ->customBlocks([
+                        HeroBlock::class],
+                     )
+                     ->toHtml()
+                    )
+                    ->prose(),
 
-                            ->size(TextSize::Large)
-                            ->color('success'),
-                        Text::make('ورائعة')
-                            ->weight(FontWeight::ExtraBold)
-                            ->size(TextSize::Large)
-                            ->color('primary'),
-                        Image::make(url: asset('images/fazha/me.jpg'),
-                        alt: 'any')
+            //    TextEntry::make('body')
+            //        ->columnSpanFull()
+            //        ->html()
+            //        ->extraAttributes(['class' => 'fi-prose fi-prose-invert'])
+            //        ->state(fn ($record): string => RichContentRenderer::make($record->body)
+            //            ->customBlocks([
+            //                HeroBlock::class],
+            //            )
+            //            ->toHtml()),
 
-                ]
-
-                )
-                ->aboveContent(
-                    Text::make('عنوان')
-                        ->size(TextSize::Medium)),
-
-                RichContentRenderer::make($record->body),
-                ImageEntry::make('image'),
-                TextEntry::make('published_at')
-                    ->dateTime(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
             ]);
     }
 }

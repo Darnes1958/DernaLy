@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Setting;
 use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -51,6 +52,15 @@ class AppServiceProvider extends ServiceProvider
         Table::configureUsing(fn(Table $table) => $table->defaultNumberLocale('nl'));
         CreateAction::configureUsing(fn(CreateAction $createAction) => $createAction->label('إضافة'));
 
+        RichEditor::configureUsing(function (RichEditor $richEditor):void {
+            $richEditor->toolbarButtons([
+                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                ['h1','h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd','alignJustify'],
+                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                ['table', 'attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
+                ['undo', 'redo'],
+            ]);
+        });
         Radio::configureUsing(function (Radio $radio): void {
             $radio->inline()->inlineLabel()->translateLabel();
         });

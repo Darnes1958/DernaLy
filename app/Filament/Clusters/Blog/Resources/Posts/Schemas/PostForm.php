@@ -2,6 +2,7 @@
 
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -18,25 +19,17 @@ class PostForm
         return $schema
             ->components([
                 TextInput::make('title')
-                    ->beforeContent(Text::make('إنها رائعة')->size(TextSize::Large))
                     ->required(),
                 RichEditor::make('body')
                     ->required()
-                    ->floatingToolbars([
-                        'paragraph' => [
-                            'bold', 'italic', 'underline', 'strike', 'subscript', 'superscript',
-                        ],
-                        'heading' => [
-                            'h1', 'h2', 'h3',
-                        ],
-                        'table' => [
-                            'tableAddColumnBefore', 'tableAddColumnAfter', 'tableDeleteColumn',
-                            'tableAddRowBefore', 'tableAddRowAfter', 'tableDeleteRow',
-                            'tableMergeCells', 'tableSplitCell',
-                            'tableToggleHeaderRow',
-                            'tableDelete',
-                        ],
+                    ->mergeTags([
+                        'name',
+                        'today'
                     ])
+                    ->customBlocks([
+                        HeroBlock::class,
+                    ])
+
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
