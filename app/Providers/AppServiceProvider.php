@@ -55,10 +55,11 @@ class AppServiceProvider extends ServiceProvider
         RichEditor::configureUsing(function (RichEditor $richEditor):void {
             $richEditor->toolbarButtons([
                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
-                ['h1','h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd','alignJustify'],
+                ['h1','h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd','alignJustify','textColor'],
                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
                 ['table', 'attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
                 ['undo', 'redo'],
+                ['grid','gridDelete','details']
             ]);
         });
         Radio::configureUsing(function (Radio $radio): void {

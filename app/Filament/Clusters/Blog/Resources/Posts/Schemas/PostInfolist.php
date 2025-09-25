@@ -28,6 +28,9 @@ class PostInfolist
 
                 TextEntry::make('body')
                     ->state(fn ($record): string => RichContentRenderer::make($record->body)
+
+                        ->fileAttachmentsVisibility('private')
+
                         ->customBlocks([
                         HeroBlock::class],
                      )

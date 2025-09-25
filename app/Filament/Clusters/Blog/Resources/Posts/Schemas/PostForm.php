@@ -22,6 +22,8 @@ class PostForm
                     ->required(),
                 RichEditor::make('body')
                     ->required()
+                    ->fileAttachmentsDirectory('fazha')
+                    ->fileAttachmentsVisibility('private')
                     ->mergeTags([
                         'name',
                         'today'
