@@ -1,6 +1,5 @@
 <x-filament-panels::page>
-    <div wire:init="showMyModal">
-        <x-filament::modal id="show-me">
+
             <div class="flex ">
 
                 @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
@@ -205,8 +204,5 @@
                     @endphp
                 </div>
             @endif
-        </x-filament::modal>
-    </div>
-
 
 </x-filament-panels::page>

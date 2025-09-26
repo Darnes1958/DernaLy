@@ -1,22 +1,32 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
+namespace App\Filament\Clusters\Blog\Resources\Posts\Pages;
 
+use App\Filament\Clusters\Blog\Resources\Posts\PostResource;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Models\Post;
+use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Schemas\Components\Text;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Resources\Pages\Page;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\TextSize;
 
-class PostForm
+class NewPost extends Page implements HasForms
 {
-    public static function configure(Schema $schema): Schema
+    use InteractsWithForms;
+    protected static string $resource = PostResource::class;
+
+    protected string $view = 'filament.clusters.blog.resources.posts.pages.new-post';
+
+    public function form(Schema $schema): Schema
     {
         return $schema
+            ->model(Post::class)
+
             ->components([
                 TextInput::make('title')
                     ->required(),
@@ -39,6 +49,13 @@ class PostForm
                     ->required(),
                 DateTimePicker::make('published_at')
                     ->required(),
+
+                Action::make('store')
+                ->action(function () use ($schema) {
+
+                })
+
             ]);
+
     }
 }

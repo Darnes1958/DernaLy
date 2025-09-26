@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Translatable\HasTranslations;
 
 class Victim extends Model
@@ -12,6 +13,10 @@ class Victim extends Model
     use HasTranslations;
     public array $translatable = ['FullNameJs','Name1Js','Name2Js','Name3Js','Name4Js','otherNameJs','notesJs'];
 
+    public function rich(): MorphOne
+    {
+      return $this->morphOne(Rich::class,'richable');
+    }
     public function Family(){
       return $this->belongsTo(Family::class);
     }

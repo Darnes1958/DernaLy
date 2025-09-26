@@ -1,167 +1,169 @@
 
-  <div class="flex ">
+<div class="grid grid-cols-3 sm:grid-cols-2 gap-4">
+    <div >
+        <div class="flex ">
 
-      @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
-      @if($record->male=='ذكر')
-          @if($record->is_great_grandfather)
-              <label   class="text-red-950"> {{__('The great grand father')}} : </label>
-          @else
-              @if($record->is_grandfather)
-                  <label   class="text-red-950">{{__('The grand father')}} :&nbsp;&nbsp; </label>
-              @else
-                  @if($record->is_father)
-                      <label  class="text-yellow-700">{{__('The father')}} :&nbsp;&nbsp; </label>
-                  @endif
-              @endif
-          @endif
-          @if($record->is_father==0 && $record->wife_id!=null)
-              <label   class="text-blue-700">{{__('The husband')}} :&nbsp;&nbsp; </label>
-          @endif
-      @endif
-      @if($record->male=='أنثي')
-          @if($record->is_great_grandmother)
-              <p style="color: aqua; ">{{__('The great gran mother')}} :&nbsp;&nbsp;</p>
-          @else
-              @if($record->is_grandmother)
-                  <p style="color: aqua; ">{{__('The grand mother')}} : &nbsp;&nbsp;</p>
-              @else
-                  @if($record->is_mother)
-                      <p style="color: aqua; ">{{__('The mother')}} : &nbsp;&nbsp;</p>
-                  @endif
-              @endif
-          @endif
-          @if($record->is_mother==0 && $record->husband_id!=null)
-              <label style="color: #6b21a8" >{{__('The wife')}} :&nbsp;&nbsp; </label>
-          @endif
-
-      @endif
-
-
-
-  @if($record->is_father)
-     <label class="text-amber-700 font-bold">{{ucfirst($record->FullNameJs)}}</label>
-    @else
-        @if($record->is_mother)
-            <label class="text-green-700 font-bold">{{ucfirst($record->FullNameJs)}}</label>
-        @else
-            <label  class="font-bold">{{ucfirst($record->FullNameJs)}}</label>
-        @endif
-    @endif
-    @if ($record->otherName) <label style="color: #9f1239;font-weight: bold"> &nbsp; [{{$record->otherNameJs}}]&nbsp; </label> @endif
-
-        @if($record->VicTalent)
-
-            @foreach($record->VicTalent as $talent)
-                <label>&nbsp;</label>
-                @if($talent->Talent->image)
-                        <x-filament::avatar src="{{  asset('images/'.$talent->Talent->image) }} " size="sm"   />
+            @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
+            @if($record->male=='ذكر')
+                @if($record->is_great_grandfather)
+                    <label   class="text-red-950"> {{__('The great grand father')}} : </label>
+                @else
+                    @if($record->is_grandfather)
+                        <label   class="text-red-950">{{__('The grand father')}} :&nbsp;&nbsp; </label>
+                    @else
+                        @if($record->is_father)
+                            <label  class="text-yellow-700">{{__('The father')}} :&nbsp;&nbsp; </label>
+                        @endif
+                    @endif
                 @endif
-            @endforeach
-        @endif
-        @if($record->Job)
-            @if($record->Job->image)
-                <label>&nbsp;</label>
-                <img src="{{ asset('images/'.$record->Job->image) }}"  style="width: 20px; height: 20px;" />
+                @if($record->is_father==0 && $record->wife_id!=null)
+                    <label   class="text-blue-700">{{__('The husband')}} :&nbsp;&nbsp; </label>
+                @endif
             @endif
-        @endif
-  </div>
-  @if(!$record->hisFather && $record->hisMother)
-      <div class="flex ">
-          @if($record->male=='ذكر') <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his mother')}} :</label>
-          @else <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her mother')}} :</label> @endif
+            @if($record->male=='أنثي')
+                @if($record->is_great_grandmother)
+                    <p style="color: aqua; ">{{__('The great gran mother')}} :&nbsp;&nbsp;</p>
+                @else
+                    @if($record->is_grandmother)
+                        <p style="color: aqua; ">{{__('The grand mother')}} : &nbsp;&nbsp;</p>
+                    @else
+                        @if($record->is_mother)
+                            <p style="color: aqua; ">{{__('The mother')}} : &nbsp;&nbsp;</p>
+                        @endif
+                    @endif
+                @endif
+                @if($record->is_mother==0 && $record->husband_id!=null)
+                    <label style="color: #6b21a8" >{{__('The wife')}} :&nbsp;&nbsp; </label>
+                @endif
 
-          <label >{{ucfirst($record->hisMother->FullNameJs)}}</label>
-          @if($record->hisMother->Familyshow->country_id!=$record->Familyshow->country_id)
-              <label>&nbsp;</label>
+            @endif
 
-              <img src="{{ asset('images/'.\App\Models\Country::find($record->hisMother->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
-          @endif
 
-      </div>
-  @endif
-  @if($record->husband)
-         <div class="flex ">
-          <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her husband')}} :</label>
-          <label >{{ucfirst($record->husband->FullNameJs)}}</label>
-             @if($record->husband->Familyshow->country_id!=$record->Familyshow->country_id)
-                 <label>&nbsp;</label>
 
-                 <img src="{{ asset('images/'.\App\Models\Country::find($record->husband->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
-             @endif
-
-         </div>
-        @endif
-  @if($record->wife)
-          <div class="flex ">
-            <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his wife')}} :</label>
-            <label >{{ucfirst($record->wife->FullNameJs)}}</label>
-              @if($record->wife->Familyshow->country_id!=$record->Familyshow->country_id)
-                  <label>&nbsp;</label>
-
-                  <img src="{{ asset('images/'.\App\Models\Country::find($record->wife->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
-              @endif
-
-          </div>
-        @endif
-  @if($record->wife2)
-         <div class="flex ">
-            <label style="color: #00bb00;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his second wife')}} :</label>
-            <label >{{ucfirst($record->wife2->FullNameJs)}}</label>
-         </div>
-        @endif
-  @if($record->hisSons->count()>0)
-      <div class="flex">
-         <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his sons')}} :</label>
-
-         @php $i=0; @endphp
-         @foreach($record->hisSons as $item)
-          @if ($i != 0) <label>&nbsp;,&nbsp;</label>  @endif
-          @if($item->is_father)
-              <label class="text-amber-700 font-bold">{{ucfirst($item->Name1Js)}}</label>
-          @else
-            @if($item->is_mother)
-              <label class="text-green-700 font-bold">{{ucfirst($item->Name1Js)}}</label>
+            @if($record->is_father)
+                <label class="text-amber-700 font-bold">{{ucfirst($record->FullNameJs)}}</label>
             @else
-              <label>{{ucfirst($item->Name1Js)}}</label>
+                @if($record->is_mother)
+                    <label class="text-green-700 font-bold">{{ucfirst($record->FullNameJs)}}</label>
+                @else
+                    <label  class="font-bold">{{ucfirst($record->FullNameJs)}}</label>
+                @endif
             @endif
-          @endif
+            @if ($record->otherName) <label style="color: #9f1239;font-weight: bold"> &nbsp; [{{$record->otherNameJs}}]&nbsp; </label> @endif
 
-          @php $i++ @endphp
+            @if($record->VicTalent)
 
-        @endforeach
-          @if($record->hisSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
-              <label>&nbsp;</label>
+                @foreach($record->VicTalent as $talent)
+                    <label>&nbsp;</label>
+                    @if($talent->Talent->image)
+                        <x-filament::avatar src="{{  asset('images/'.$talent->Talent->image) }} " size="sm"   />
+                    @endif
+                @endforeach
+            @endif
+            @if($record->Job)
+                @if($record->Job->image)
+                    <label>&nbsp;</label>
+                    <img src="{{ asset('images/'.$record->Job->image) }}"  style="width: 20px; height: 20px;" />
+                @endif
+            @endif
+        </div>
+        @if(!$record->hisFather && $record->hisMother)
+            <div class="flex ">
+                @if($record->male=='ذكر') <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his mother')}} :</label>
+                @else <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her mother')}} :</label> @endif
 
-              <img src="{{ asset('images/'.\App\Models\Country::find($record->hisSons->first()->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
-          @endif
+                <label >{{ucfirst($record->hisMother->FullNameJs)}}</label>
+                @if($record->hisMother->Familyshow->country_id!=$record->Familyshow->country_id)
+                    <label>&nbsp;</label>
+
+                    <img src="{{ asset('images/'.\App\Models\Country::find($record->hisMother->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+                @endif
+
+            </div>
+        @endif
+        @if($record->husband)
+            <div class="flex ">
+                <label class="text-amber-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her husband')}} :</label>
+                <label >{{ucfirst($record->husband->FullNameJs)}}</label>
+                @if($record->husband->Familyshow->country_id!=$record->Familyshow->country_id)
+                    <label>&nbsp;</label>
+
+                    <img src="{{ asset('images/'.\App\Models\Country::find($record->husband->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+                @endif
+
+            </div>
+        @endif
+        @if($record->wife)
+            <div class="flex ">
+                <label class="text-green-700 font-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his wife')}} :</label>
+                <label >{{ucfirst($record->wife->FullNameJs)}}</label>
+                @if($record->wife->Familyshow->country_id!=$record->Familyshow->country_id)
+                    <label>&nbsp;</label>
+
+                    <img src="{{ asset('images/'.\App\Models\Country::find($record->wife->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+                @endif
+
+            </div>
+        @endif
+        @if($record->wife2)
+            <div class="flex ">
+                <label style="color: #00bb00;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his second wife')}} :</label>
+                <label >{{ucfirst($record->wife2->FullNameJs)}}</label>
+            </div>
+        @endif
+        @if($record->hisSons->count()>0)
+            <div class="flex">
+                <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('his sons')}} :</label>
+
+                @php $i=0; @endphp
+                @foreach($record->hisSons as $item)
+                    @if ($i != 0) <label>&nbsp;,&nbsp;</label>  @endif
+                    @if($item->is_father)
+                        <label class="text-amber-700 font-bold">{{ucfirst($item->Name1Js)}}</label>
+                    @else
+                        @if($item->is_mother)
+                            <label class="text-green-700 font-bold">{{ucfirst($item->Name1Js)}}</label>
+                        @else
+                            <label>{{ucfirst($item->Name1Js)}}</label>
+                        @endif
+                    @endif
+
+                    @php $i++ @endphp
+
+                @endforeach
+                @if($record->hisSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
+                    <label>&nbsp;</label>
+
+                    <img src="{{ asset('images/'.\App\Models\Country::find($record->hisSons->first()->Familyshow->country_id)->image) }}"  style="width: 30px; height: 30px;" />
+                @endif
 
 
-      </div>
-    @endif
-  @if($record->herSons->count()>0)
-      <div class="flex">
+            </div>
+        @endif
+        @if($record->herSons->count()>0)
+            <div class="flex">
                 <label style="color: aqua;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('her sons')}} :</label>
-            @php
-                if ($record->has_more !=1) {
-                    $i=0;
-                    foreach($record->herSons as $item){
-                         if ($i != 0) echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label>" ;
-                         if ($item->is_father)
-                             echo "<label class=\"text-amber-700 font-bold\">".ucfirst($item->Name1Js)."</label>";
-                         else
-                             if ($item->is_mother)
-                                 echo "<label class=\"text-green-700 font-bold\">".ucfirst($item->Name1Js)."</label>";
+                @php
+                    if ($record->has_more !=1) {
+                        $i=0;
+                        foreach($record->herSons as $item){
+                             if ($i != 0) echo "<label style=\"color: aqua;font-weight: bold\">&nbsp;,&nbsp;</label>" ;
+                             if ($item->is_father)
+                                 echo "<label class=\"text-amber-700 font-bold\">".ucfirst($item->Name1Js)."</label>";
                              else
-                             echo "<label>".ucfirst($item->Name1Js)."</label>";
-                         $i++;
-                    }
-                    @endphp
+                                 if ($item->is_mother)
+                                     echo "<label class=\"text-green-700 font-bold\">".ucfirst($item->Name1Js)."</label>";
+                                 else
+                                 echo "<label>".ucfirst($item->Name1Js)."</label>";
+                             $i++;
+                        }
+                @endphp
 
-                           @if($record->herSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
-                             <img src=" {{ asset('images/'.\App\Models\Country::find($record->herSons->first()->Familyshow->country_id)->image) }} " style="width: 30px; height: 30px;" />
-                           @endif
+                @if($record->herSons->first()->Familyshow->country_id!=$record->Familyshow->country_id)
+                    <img src=" {{ asset('images/'.\App\Models\Country::find($record->herSons->first()->Familyshow->country_id)->image) }} " style="width: 30px; height: 30px;" />
+                @endif
 
-                   @php
+                @php
 
                     if (!$record->husband) echo "<label>&nbsp&nbsp;(".__('from')." : &nbsp ".ucfirst($item->Name2Js)."&nbsp;".ucfirst($item->Name3Js)."&nbsp;".ucfirst($item->Name4Js).")</label>";
                 }
@@ -200,7 +202,18 @@
                             echo "<label>&nbsp&nbsp;(".__('from')." :  ".ucfirst($name2)."&nbsp;".ucfirst($name3)."&nbsp;".ucfirst($name4).")</label>";
                     }
 
-            @endphp
-        </div>
-    @endif
+                @endphp
+            </div>
+        @endif
+
+    </div>
+
+        @foreach($record->image2 as $img)
+            <div>
+                <img src="{{asset('images/'.$img)}}" class=" rounded-lg object-cover  h-100"  alt="">
+            </div>
+        @endforeach
+
+
+</div>
 

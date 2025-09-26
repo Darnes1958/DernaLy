@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Translatable\HasTranslations;
 
 class Street extends Model
 {
     use HasTranslations;
+    public function rich(): MorphOne
+    {
+        return $this->morphOne(Rich::class,'richable');
+    }
     public array $translatable = ['StrNameJs',];
     protected $casts=['image'=>'array'];
 

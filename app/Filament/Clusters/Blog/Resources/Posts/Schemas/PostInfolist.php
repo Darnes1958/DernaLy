@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
 use App\Models\Post;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
+use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Image;
