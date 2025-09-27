@@ -3,6 +3,8 @@
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
 use App\Models\Post;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Forms\Components\TextInput;
@@ -29,15 +31,18 @@ class PostInfolist
 
                 TextEntry::make('body')
                     ->state(fn ($record): string => RichContentRenderer::make($record->body)
-
                         ->fileAttachmentsVisibility('private')
-
                         ->customBlocks([
-                        HeroBlock::class],
-                     )
-                     ->toHtml()
+                            HeroBlock::class,
+                            MarwaBlock::class,
+                            OneImage::class,
+                        ])
+
+                        ->toHtml()
                     )
-                    ->prose(),
+                    ->columnSpanFull()
+                    ->prose()
+
 
             //    TextEntry::make('body')
             //        ->columnSpanFull()

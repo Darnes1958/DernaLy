@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <div class="fi-prose"
+    <div
         x-data ="{selectedId: null}"
         x-on:click.prevent="
 
