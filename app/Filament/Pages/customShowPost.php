@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Models\Post;
 use App\Models\Rich;
 use App\Models\Street;
@@ -17,6 +18,7 @@ use Filament\Pages\Page;
 use Filament\Panel;
 use Filament\Schemas\Schema;
 use GPBMetadata\Google\Api\Log;
+use Illuminate\Support\HtmlString;
 use Livewire\Attributes\On;
 
 
@@ -103,8 +105,11 @@ protected ?string $heading='';
                     RichContentRenderer::make($record->body)
                         ->fileAttachmentsVisibility('private')
                         ->customBlocks([
-                            HeroBlock::class],
+                            HeroBlock::class,
+                            MarwaBlock::class,
+                        ],
                         )
+                        ->mergeTags(['title'=> new  HtmlString('<span class="text-4xl">'.$this->record->title.'</span>')])
                         ->toHtml()
                     )
                     ->prose(),

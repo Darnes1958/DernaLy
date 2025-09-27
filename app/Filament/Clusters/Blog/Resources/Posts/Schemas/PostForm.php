@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -31,7 +32,12 @@ class PostForm
                     ])
                     ->customBlocks([
                         HeroBlock::class,
+                        MarwaBlock::class,
                     ])
+                    ->mergeTags([
+                        'title',
+                    ])
+
 
                     ->columnSpanFull(),
                 FileUpload::make('image')

@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <div
+    <div class="fi-prose"
         x-data ="{selectedId: null}"
         x-on:click.prevent="
 
@@ -10,7 +10,8 @@
        "
 
     >
-        {{$this->form}}
+       {{ $this->form }}
+
     </div>
 
 </x-filament-panels::page>

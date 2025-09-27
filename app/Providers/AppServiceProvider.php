@@ -56,10 +56,11 @@ class AppServiceProvider extends ServiceProvider
             $richEditor->toolbarButtons([
                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
                 ['h1','h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd','alignJustify','textColor'],
-                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                ['blockquote', 'codeBlock', 'bulletList', 'orderedList','lead'],
+                ['customBlocks','mergeTags'],
                 ['table', 'attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
                 ['undo', 'redo'],
-                ['grid','gridDelete','details']
+                ['grid','gridDelete','details','horizontalRule','highlight']
             ]);
         });
         Radio::configureUsing(function (Radio $radio): void {
