@@ -1,5 +1,5 @@
 
-<div class="grid grid-cols-3 sm:grid-cols-2 gap-4">
+<div class=" gap-4">
     <div >
         <div class="flex ">
 
