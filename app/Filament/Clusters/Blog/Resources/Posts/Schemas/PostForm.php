@@ -44,9 +44,9 @@ class PostForm
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
-                    ->required(),
+                    ,
                 DateTimePicker::make('published_at')
-                    ->required(),
+                    ,
             ]);
     }
 }
