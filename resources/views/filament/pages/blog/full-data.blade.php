@@ -1,7 +1,7 @@
 
 <div class=" gap-4">
     <div >
-        <div class="flex ">
+        <div class="flex text-2xl mb-4">
 
             @if($record->hisFather) <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>@endif
             @if($record->male=='ذكر')
@@ -208,11 +208,27 @@
 
     </div>
 
+    @if($record->year)
+        <div class="flex mt-6">
+            <span class="text-blue-500 text-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;مواليد :&nbsp; </span>
+            <span >{{$record->year}}</span>
+        </div>
+    @endif
+
+    <div>
+        <span class="text-blue-500 text-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;مكان الوفاة :&nbsp; </span>
+        <span >{{$record->Street->StrName}}</span>
+
+    </div>
+
+    <div class="grid grid-cols-2  mt-6">
         @foreach($record->image2 as $img)
             <div>
                 <img src="{{asset('images/'.$img)}}" class=" rounded-lg object-cover  h-100"  alt="">
             </div>
         @endforeach
+    </div>
+
 
 
 </div>
