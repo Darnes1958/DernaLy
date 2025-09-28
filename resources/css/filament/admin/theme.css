@@ -22,15 +22,22 @@
 }
 
 @utility green700 {
-    @apply text-green-700;
+    @apply text-teal-700;
 }
 @utility green900 {
-    @apply text-green-900;
+    @apply text-teal-900;
 }
 
+@utility myLink{
+    @apply underline;
+    @apply font-extrabold;
+
+}
 .men {
-    @apply amber700;
+    @apply amber900;
+    @apply myLink;
 }
 .women {
     @apply green900;
+    @apply myLink;
 }

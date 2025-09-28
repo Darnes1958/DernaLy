@@ -3,12 +3,12 @@
         <h1 class="text-4xl font-extrabold ">{{$heading}}</h1>
         <p class="text-lg text-green-700">{{$subheading}}</p>
     </div>
-    <div class="col-span-4 ">
+    <div class="col-span-4 font-extrabold text-">
             {{\Filament\Forms\Components\RichEditor\RichContentRenderer::make($details)}}
     </div>
 
     <div class="col-span-4 ">
-        <img  src="{{ asset('images/'.$image) }}"  style="width: 96px; height: 96px;" />
+        <img  src="{{ asset('images/'.$image) }}"  style="width: 96px; height: 96px; "  />
     </div>
 
 </div>
