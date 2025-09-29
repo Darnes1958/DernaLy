@@ -31,7 +31,7 @@
 @utility myLink{
     @apply underline;
     @apply font-extrabold;
-    @apply text-xl;
+    @apply text-2xl;
 
 }
 .men {
