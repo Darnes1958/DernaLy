@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
 use Filament\Forms\Components\DateTimePicker;
@@ -35,6 +36,7 @@ class PostForm
                         HeroBlock::class,
                         MarwaBlock::class,
                         OneImage::class,
+                        LongAndImage::class,
                     ])
                     ->mergeTags([
                         'title',

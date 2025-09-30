@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
 use App\Models\Post;
@@ -36,6 +37,7 @@ class PostInfolist
                             HeroBlock::class,
                             MarwaBlock::class,
                             OneImage::class,
+                            LongAndImage::class,
                         ])
 
                         ->toHtml()

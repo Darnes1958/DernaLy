@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
 use App\Models\Post;
@@ -109,6 +110,7 @@ protected ?string $heading='';
                             HeroBlock::class,
                             MarwaBlock::class,
                             OneImage::class,
+                            LongAndImage::class,
                         ],
                         )
                         ->mergeTags(['title'=> new  HtmlString('<span class="text-4xl">'.$this->record->title.'</span>')])
