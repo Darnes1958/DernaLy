@@ -25,6 +25,7 @@ class VictimsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('FullName')
                     ->description(function (Model $record){
                         return $record->getTranslation('FullNameJs','en');

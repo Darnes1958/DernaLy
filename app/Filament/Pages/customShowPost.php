@@ -22,6 +22,7 @@ use Filament\Schemas\Schema;
 use GPBMetadata\Google\Api\Log;
 use Illuminate\Support\HtmlString;
 use Livewire\Attributes\On;
+use function Laravel\Prompts\text;
 
 
 class customShowPost extends Page implements HasForms
@@ -35,15 +36,15 @@ protected ?string $heading='';
 
     public function openModal($text)
     {
-        $rish=Rich::where('name',$text)->first();
-        $this->id=$rish->richable->id;
 
-        if ($rish->richable_type=='App\Models\Victim')
-         $this->mountAction('viewVictim',['id'=>$this->id]);
+       $id=substr($text[1],15);
 
-        if ($rish->richable_type=='App\Models\Street')
-            if (Street::find($this->id)->image)
-            $this->mountAction('viewStreet',['id'=>$this->id]);
+      info($id);
+       $this->mountAction('viewVictim',['id'=>$id]);
+
+ //       if ($rish->richable_type=='App\Models\Street')
+ //           if (Street::find($this->id)->image)
+ //           $this->mountAction('viewStreet',['id'=>$this->id]);
 
     }
     protected function getActions(): array

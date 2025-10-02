@@ -28,17 +28,48 @@
     @apply text-teal-900;
 }
 
-@utility myLink{
+@utility bigLink{
     @apply underline;
     @apply font-extrabold;
     @apply text-2xl;
+}
+@utility smalLink{
+    @apply underline;
+    @apply font-extrabold;
+    @apply text-xl;
+}
 
-}
-.men {
+.me {
     @apply amber900;
-    @apply myLink;
+    @apply bigLink;
 }
-.women {
+.wo {
     @apply green900;
-    @apply myLink;
+    @apply bigLink;
+}
+.gr {
+    @apply text-green-700;
+    @apply smalLink;
+}
+.bl {
+    @apply text-blue-700;
+    @apply smalLink;
+}
+.am {
+    @apply text-amber-700;
+    @apply smalLink;
+}
+.yl {
+    @apply text-yellow-300;
+    @apply smalLink;
+}
+
+.ro {
+    @apply text-rose-500;
+    @apply smalLink;
+}
+.bb {
+    @apply text-neutral-950;
+    @apply smalLink;
+
 }

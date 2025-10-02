@@ -221,13 +221,16 @@
 
     </div>
 
-    <div class="grid grid-cols-2  mt-6 mb-6">
-        @foreach($record->image2 as $img)
-            <div>
-                <img src="{{asset('images/'.$img)}}" class=" rounded-lg object-cover  h-100"  alt="">
-            </div>
-        @endforeach
-    </div>
+    @if($record->image2)
+        <div class="grid grid-cols-2  mt-6 mb-6">
+            @foreach($record->image2 as $img)
+                <div>
+                    <img src="{{asset('images/'.$img)}}" class=" rounded-lg object-cover  h-100"  alt="">
+                </div>
+            @endforeach
+        </div>
+
+    @endif
 
 
 
