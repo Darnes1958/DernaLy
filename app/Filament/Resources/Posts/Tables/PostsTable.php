@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts\Tables;
+namespace App\Filament\Resources\Posts\Tables;
 
-use App\Models\Post;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;

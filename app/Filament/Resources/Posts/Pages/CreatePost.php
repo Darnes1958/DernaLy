@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts\Pages;
+namespace App\Filament\Resources\Posts\Pages;
 
-use App\Filament\Clusters\Blog\Resources\Posts\PostResource;
+use App\Filament\Resources\Posts\PostResource;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreatePost extends CreateRecord

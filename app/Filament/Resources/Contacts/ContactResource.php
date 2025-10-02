@@ -22,6 +22,7 @@ class ContactResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?int $navigationSort=7;
     public static function getNavigationBadge(): ?string
     {
         return Contact::where('status',0)->count() ?? null;

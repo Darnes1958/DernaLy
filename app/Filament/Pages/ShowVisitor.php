@@ -27,6 +27,7 @@ class ShowVisitor extends Page implements HasTable,HasForms
     protected string $view = 'filament.pages.show-visitor';
     protected static string | BackedEnum | null $navigationIcon=Heroicon::User;
     protected static ?string $navigationLabel='Visitors';
+    protected static ?int $navigationSort=6;
     protected ?string $heading='';
 
     public  $date1;

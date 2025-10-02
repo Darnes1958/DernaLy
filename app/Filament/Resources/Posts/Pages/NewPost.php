@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts\Pages;
+namespace App\Filament\Resources\Posts\Pages;
 
-use App\Filament\Clusters\Blog\Resources\Posts\PostResource;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Resources\Posts\PostResource;
 use App\Models\Post;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;

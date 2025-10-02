@@ -10,5 +10,6 @@ class AljabelCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquares2x2;
     protected static ?string $navigationLabel='بيانات ضحايا مدن وقري الجيل الأخضر';
+    protected static ?int $navigationSort=3;
 
 }

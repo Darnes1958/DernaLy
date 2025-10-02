@@ -1,24 +1,14 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts\Schemas;
+namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
-use App\Models\Post;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
-use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Image;
-use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\FontFamily;
-use Filament\Support\Enums\FontWeight;
-use Filament\Support\Enums\TextSize;
-use Google\Cloud\Translate\V3\Model;
-use Illuminate\Contracts\View\View;
 
 class PostInfolist
 {

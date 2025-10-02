@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Clusters\Blog\Resources\Posts;
+namespace App\Filament\Resources\Posts;
 
 use App\Filament\Clusters\Blog\BlogCluster;
-use App\Filament\Clusters\Blog\Resources\Posts\Pages\CreatePost;
-use App\Filament\Clusters\Blog\Resources\Posts\Pages\EditPost;
-use App\Filament\Clusters\Blog\Resources\Posts\Pages\ListPosts;
-use App\Filament\Clusters\Blog\Resources\Posts\Pages\ViewPost;
-use App\Filament\Clusters\Blog\Resources\Posts\Schemas\PostForm;
-use App\Filament\Clusters\Blog\Resources\Posts\Schemas\PostInfolist;
-use App\Filament\Clusters\Blog\Resources\Posts\Tables\PostsTable;
+use App\Filament\Resources\Posts\Pages\CreatePost;
+use App\Filament\Resources\Posts\Pages\EditPost;
+use App\Filament\Resources\Posts\Pages\ListPosts;
+use App\Filament\Resources\Posts\Pages\ViewPost;
+use App\Filament\Resources\Posts\Schemas\PostForm;
+use App\Filament\Resources\Posts\Schemas\PostInfolist;
+use App\Filament\Resources\Posts\Tables\PostsTable;
 use App\Models\Post;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -23,7 +23,10 @@ class PostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $cluster = BlogCluster::class;
+
+
+    protected static ?string $navigationLabel='المدونات';
+    protected static ?int $navigationSort=1;
 
     public static function form(Schema $schema): Schema
     {
