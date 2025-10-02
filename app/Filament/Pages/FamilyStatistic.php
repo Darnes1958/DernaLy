@@ -10,7 +10,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
+use Filament\Schemas\View\Components\TextComponent;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Tables\Columns\Summarizers\Summarizer;
 use Filament\Tables\Columns\TextColumn;
@@ -25,8 +27,10 @@ class FamilyStatistic extends Page implements HasTable,HasForms
     use InteractsWithTable,InteractsWithForms;
     protected string $view = 'filament.pages.family-statistic';
 
+    protected static ?int $navigationSort=10;
+
     public $family;
-    public $mothers,$grands,$sonOfmothers,$sonOfgrands,$wives,$victims,$husband;
+    public  $mothers,$grands,$sonOfmothers,$sonOfgrands,$wives,$victims,$husband;
 
 
     public function form(Schema $schema): Schema
@@ -40,7 +44,54 @@ class FamilyStatistic extends Page implements HasTable,HasForms
                  ->live()
                  ->afterStateUpdated(function ($state){
                      if ($state) {$this->family=$state;}
-                 })
+                 }),
+
+                Text::make(function (){
+                    $this->mothers=Victim::where('familyshow_id',$this->family)->where('is_mother',1)->select('id')->get();
+                    $this->victims=Victim::where('family_id','=',$this->family)->select('id')->get();
+                    $this->mothers=Victim::where('familyshow_id',$this->family)->where('is_mother',1)->select('id')->get();
+                    $this->husband=Victim::where('familyshow_id',$this->family)->where('wife_id','!=',null)->select('id')->get();
+                    $this->sonOfmothers=Victim::whereIn('mother_id',$this->mothers)->where('familyshow_id','!=',$this->family)->select('id')->get();
+                    $this->grands=Victim::query()
+                        ->where('familyshow_id',$this->family)
+                        ->where('is_grandmother',1)->orWhere('is_grandfather')->select('id')->get();
+                    $this->sonOfgrands=Victim::query()
+                        ->where('familyshow_id',$this->family)
+                        ->wherein('grandmother_id',$this->grands)
+                        ->orWhereIn('grandfather_id',$this->grands)
+                        ->whereNotIn('id',$this->sonOfmothers)
+                        ->select('id')
+                        ->get();
+
+
+                    $this->wives=Victim::query()
+                        ->where('familyshow_id','!=',$this->family)
+                        ->where(function ($q) {
+                            $q->where(function ($query) {return $query->where('is_mother',1)->whereIn('id',$this->victims);})
+                                ->orWhereIn('husband_id',$this->husband);
+                        })
+                        ->select('id')
+                        ->get();
+
+
+                    $v1=Victim::where('familyshow_id',$this->family)->count();
+                       $v2=Victim::whereIn('mother_id',$this->mothers)->where('familyshow_id','!=',$this->family)->count();
+                           $v3=Victim::query()
+                                ->where('familyshow_id',$this->family)
+                                ->wherein('grandmother_id',$this->grands)
+                                ->orWhereIn('grandfather_id',$this->grands)
+                                ->whereNotIn('id',$this->sonOfmothers)->count();
+                               $v4=Victim::query()
+                                ->where('familyshow_id','!=',$this->family)
+                                ->where(function ($q) {
+                                    $q->where(function ($query) {return $query->where('is_mother',1)->whereIn('id',$this->victims);})
+                                        ->orWhereIn('husband_id',$this->husband);
+                                })->count();
+
+                       return $v1+$v2+$v3+$v4;
+
+                }),
+
             ])
             ->columns(4);
     }
