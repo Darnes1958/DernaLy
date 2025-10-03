@@ -1,6 +1,6 @@
 <div>
     <div class="flex w-full gap-4">
-        <div class="w-8/12">
+        <div class="w-{{$w1}}/12">
             <div class="fi-prose">
                 {!! \Filament\Forms\Components\RichEditor\RichContentRenderer::make($theText)->customBlocks([
                         \App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock::class,
@@ -11,9 +11,11 @@
             </div>
 
         </div>
-        <div class="w-4/12">
+        <div class="w-{{$w2}}/12">
+             @php if ($imgHeight!='auto') $imgHeight=$imgHeight.'pt' @endphp
+            @php if ($imgWidth!='auto') $imgWidth=$imgWidth.'pt' @endphp
             <figure class="w-full">
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/'.$theImage) }}" >
+                <img class=" rounded-lg" src="{{ asset('images/'.$theImage) }}" style="height: {{$imgHeight}}; width: {{$imgWidth}}">
                 <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{$theLabel}}</figcaption>
             </figure>
         </div>

@@ -49,6 +49,10 @@ class LongAndImage extends RichContentCustomBlock
                     ->image()
                     ->directory('blogs'),
                 TextInput::make('theLabel'),
+                TextInput::make('w1')->numeric(),
+                TextInput::make('w2')->numeric(),
+                TextInput::make('imgHeight'),
+                TextInput::make('imgWidth')->default('auto'),
 
             ]);
     }
@@ -60,6 +64,10 @@ class LongAndImage extends RichContentCustomBlock
             'theText' => $config['theText'],
             'theImage' => $config['theImage'],
             'theLabel' => $config['theLabel'],
+            'w1' => $config['w1'],
+            'w2' => $config['w2'],
+            'imgHeight' => $config['imgHeight'],
+            'imgWidth' => $config['imgWidth'],
         ])->render();
     }
 
@@ -69,6 +77,10 @@ class LongAndImage extends RichContentCustomBlock
             'theText' => $config['theText'],
             'theImage' => $config['theImage'],
             'theLabel' => $config['theLabel'],
+            'w1' => $config['w1'],
+            'w2' => $config['w2'],
+            'imgHeight' => $config['imgHeight'],
+            'imgWidth' => $config['imgWidth'],
         ])->render();
     }
 }

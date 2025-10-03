@@ -5,7 +5,7 @@
         </div>
         <div class="w-4/12">
             <figure class="w-full">
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/'.$theImage) }}" >
+                <img class="h-{{$imgHeight}} w-auto rounded-lg" src="{{ asset('images/'.$theImage) }}" >
                 <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{$theLabel}}</figcaption>
             </figure>
         </div>
