@@ -49,8 +49,8 @@ class LongAndImage extends RichContentCustomBlock
                     ->image()
                     ->directory('blogs'),
                 TextInput::make('theLabel'),
-                TextInput::make('w1')->numeric(),
-                TextInput::make('w2')->numeric(),
+                TextInput::make('w1'),
+                TextInput::make('w2'),
                 TextInput::make('imgHeight'),
                 TextInput::make('imgWidth')->default('auto'),
 

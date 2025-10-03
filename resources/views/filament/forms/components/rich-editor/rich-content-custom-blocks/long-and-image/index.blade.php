@@ -12,7 +12,7 @@
 
         </div>
         <div class="w-{{$w2}}/12">
-             @php if ($imgHeight!='auto') $imgHeight=$imgHeight.'pt' @endphp
+            @php if ($imgHeight!='auto') $imgHeight=$imgHeight.'pt' @endphp
             @php if ($imgWidth!='auto') $imgWidth=$imgWidth.'pt' @endphp
             <figure class="w-full">
                 <img class=" rounded-lg" src="{{ asset('images/'.$theImage) }}" style="height: {{$imgHeight}}; width: {{$imgWidth}}">
