@@ -29,12 +29,12 @@
 }
 
 @utility bigLink{
-    @apply underline;
+
     @apply font-extrabold;
     @apply text-2xl;
 }
 @utility smalLink{
-    @apply underline;
+
     @apply font-extrabold;
     @apply text-xl;
 }
