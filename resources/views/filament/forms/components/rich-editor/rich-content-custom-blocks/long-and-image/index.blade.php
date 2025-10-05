@@ -16,7 +16,7 @@
             @php if ($imgWidth!='auto') $imgWidth=$imgWidth.'pt' @endphp
             <figure class="w-full">
                 <img class=" rounded-lg" src="{{ asset('images/'.$theImage) }}" style="height: {{$imgHeight}}; width: {{$imgWidth}}">
-                <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{{$theLabel}}</figcaption>
+                <figcaption class="mt-2 text-sm  text-gray-500 dark:text-gray-400">{{$theLabel}}</figcaption>
             </figure>
         </div>
     </div>
