@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ImageAndShort;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
@@ -34,6 +35,7 @@ class PostForm
                         MarwaBlock::class,
                         OneImage::class,
                         LongAndImage::class,
+                        ImageAndShort::class,
                     ])
                     ->mergeTags([
                         'title',
