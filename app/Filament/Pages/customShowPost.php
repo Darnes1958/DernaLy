@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ImageAndShort;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
@@ -38,8 +39,6 @@ protected ?string $heading='';
     {
 
        $id=substr($text[1],15);
-
-      info($id);
        $this->mountAction('viewVictim',['id'=>$id]);
 
  //       if ($rish->richable_type=='App\Models\Street')
@@ -112,6 +111,7 @@ protected ?string $heading='';
                             MarwaBlock::class,
                             OneImage::class,
                             LongAndImage::class,
+                            ImageAndShort::class,
                         ],
                         )
                         ->mergeTags(['title'=> new  HtmlString('<span class="text-4xl">'.$this->record->title.'</span>')])
