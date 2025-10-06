@@ -14,8 +14,8 @@
         <div class="w-full md:w-{{$w2}}/12">
             @php if ($imgHeight!='auto') $imgHeight=$imgHeight.'pt' @endphp
             @php if ($imgWidth!='auto') $imgWidth=$imgWidth.'pt' @endphp
-            <figure class="w-full">
-                <img class=" rounded-lg" src="{{ asset('images/'.$theImage) }}" style="height: {{$imgHeight}}; width: {{$imgWidth}}">
+            <figure class="w-full container mx-auto">
+                <img class=" rounded-lg mx-auto"  src="{{ asset('images/'.$theImage) }}" style="height: {{$imgHeight}}; width: {{$imgWidth}}">
                 <figcaption class="mt-2 text-sm  text-gray-500 dark:text-gray-400">{{$theLabel}}</figcaption>
             </figure>
         </div>
