@@ -21,6 +21,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use GPBMetadata\Google\Api\Log;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class FamilyStatistic extends Page implements HasTable,HasForms
 {
@@ -32,6 +33,10 @@ class FamilyStatistic extends Page implements HasTable,HasForms
     public $family;
     public  $mothers,$grands,$sonOfmothers,$sonOfgrands,$wives,$victims,$husband;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->is_admin;
+    }
 
     public function form(Schema $schema): Schema
     {

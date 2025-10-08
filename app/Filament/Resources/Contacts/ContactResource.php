@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ContactResource extends Resource
 {
@@ -23,6 +24,11 @@ class ContactResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?int $navigationSort=7;
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->is_admin;
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return Contact::where('status',0)->count() ?? null;

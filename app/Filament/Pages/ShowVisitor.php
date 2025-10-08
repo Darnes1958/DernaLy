@@ -20,6 +20,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ShowVisitor extends Page implements HasTable,HasForms
 {
@@ -29,6 +30,11 @@ class ShowVisitor extends Page implements HasTable,HasForms
     protected static ?string $navigationLabel='Visitors';
     protected static ?int $navigationSort=6;
     protected ?string $heading='';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->is_admin;
+    }
 
     public  $date1;
     public $date2;
