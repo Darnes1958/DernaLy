@@ -8,9 +8,9 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImag
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
 use App\Models\Post;
-use App\Models\Rich;
 use App\Models\Street;
 use App\Models\Victim;
+use App\Plugins\YoutubeRichContentPlugin;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
@@ -20,10 +20,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Pages\Page;
 use Filament\Panel;
 use Filament\Schemas\Schema;
-use GPBMetadata\Google\Api\Log;
 use Illuminate\Support\HtmlString;
-use Livewire\Attributes\On;
-use function Laravel\Prompts\text;
 
 
 class customShowPost extends Page implements HasForms
@@ -106,6 +103,7 @@ protected ?string $heading='';
                     ->state(fn ($record): string =>
                     RichContentRenderer::make($record->body)
                         ->fileAttachmentsVisibility('private')
+
                         ->customBlocks([
                             HeroBlock::class,
                             MarwaBlock::class,

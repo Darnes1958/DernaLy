@@ -8,8 +8,10 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.13",
+        "@tiptap/extension-youtube": "^3.6.5",
         "axios": "^1.11.0",
         "concurrently": "^9.0.1",
+        "esbuild": "^0.25.10",
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.1.13",
         "vite": "^7.0.4"

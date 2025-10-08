@@ -6,6 +6,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HeroBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
+use App\Plugins\YoutubeRichContentPlugin;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -23,6 +24,7 @@ class PostInfolist
                 TextEntry::make('body')
                     ->state(fn ($record): string => RichContentRenderer::make($record->body)
                         ->fileAttachmentsVisibility('private')
+
                         ->customBlocks([
                             HeroBlock::class,
                             MarwaBlock::class,

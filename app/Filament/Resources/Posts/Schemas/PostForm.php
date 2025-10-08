@@ -7,9 +7,11 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ImageAndSho
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\LongAndImage;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\MarwaBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OneImage;
+use App\Plugins\YoutubeRichContentPlugin;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -19,6 +21,14 @@ class PostForm
     {
         return $schema
             ->components([
+                Select::make('author_id')
+                 ->relationship('Author', 'name')
+                 ->searchable()
+                 ->preload(),
+                Select::make('category_id')
+                    ->relationship('Category', 'name')
+                    ->searchable()
+                    ->preload(),
                 TextInput::make('title')
                     ->required(),
                 RichEditor::make('body')
@@ -40,7 +50,6 @@ class PostForm
                     ->mergeTags([
                         'title',
                     ])
-
 
                     ->columnSpanFull(),
                 FileUpload::make('image')

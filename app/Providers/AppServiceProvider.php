@@ -11,7 +11,9 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentView;
 use Filament\Tables\Columns\IconColumn;
@@ -40,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        FilamentAsset::register([
+            Js::make('rich-content-plugins/youtube', __DIR__ . '/../../resources/js/dist/filament/rich-content-plugins/youtube.js')->loadedOnRequest(),
+        ]);
         Pdf::default()
 
             ->withBrowsershot(function (Browsershot $shot) {
